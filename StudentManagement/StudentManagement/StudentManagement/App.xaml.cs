@@ -24,12 +24,13 @@ namespace StudentManagement
             
         }
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
             InitDatabase();
             InitMockData();
             InitializeComponent();
             StartApp();
+            //await NavigationService.NavigateAsync("NavigationPage/TestGui");
         }
 
         protected override void RegisterTypes()
@@ -54,6 +55,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<PersonalScoreListPage>(PageManager.PersonalScoreListPage);
             Container.RegisterTypeForNavigation<ChangeClassesInfoPage>(PageManager.ChangeClassesInfoPage);
             Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>(PageManager.ChangeSubjectsInfoPage);
+            Container.RegisterTypeForNavigation<TestGui>(PageManager.TestGui);
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
@@ -110,7 +112,8 @@ namespace StudentManagement
             // If StudentRole
             else
             {
-                uri += "/" + PageManager.DetailStudentPage;
+                uri = PageManager.TestGui;
+                //uri += "/" + PageManager.DetailStudentPage;
                 navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
                 navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
             }

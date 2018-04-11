@@ -22,6 +22,8 @@
         public static readonly string ChangeClassesInfoPage = "ChangeClassesInfoPage";
         public static readonly string ChangeSubjectsInfoPage = "ChangeSubjectsInfoPage";
 
+        public static readonly string TestGui = "TestGui";
+
 
         public static string MultiplePage(string[] pages)
         {

@@ -38,6 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BottomBar\BottomBarPage.cs" />
+    <Compile Include="BottomBar\BottomBarPageExtensions.cs" />
     <Compile Include="Controls\CustomButton.cs" />
     <Compile Include="Controls\CustomDatePicker.cs" />
     <Compile Include="Controls\CustomEntry.cs" />
