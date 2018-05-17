@@ -30,7 +30,8 @@ namespace StudentManagement
             InitMockData();
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("MainPage");
+            //await NavigationService.NavigateAsync("NavigationPage/MainPage");
             //StartApp();
         }
 
@@ -39,6 +40,10 @@ namespace StudentManagement
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+
+            Container.RegisterTypeForNavigation<A>();
+            Container.RegisterTypeForNavigation<B>();
+            Container.RegisterTypeForNavigation<C>();
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);

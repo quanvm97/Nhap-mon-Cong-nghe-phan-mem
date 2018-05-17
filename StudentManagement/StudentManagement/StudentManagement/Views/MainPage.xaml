@@ -3,11 +3,27 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="StudentManagement.Views.MainPage"
                   xmlns:xf="clr-namespace:BottomBar.XamarinForms"
+                  xmlns:views="clr-namespace:StudentManagement.Views;assembly=StudentManagement"
                   Title="{Binding PageTitle}">
 
-    <ContentPage Title="Nearby"
+  <NavigationPage Title="ViewA">
+        <x:Arguments>
+            <views:A/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="ViewB">
+        <x:Arguments>
+            <views:B Title="ViewB"/>
+        </x:Arguments>
+    </NavigationPage>
+
+  <ContentPage Title="Nearby"
                  Icon="ic_favorites.png"
-                 xf:BottomBarPageExtensions.TabColor="#7B1FA2" />
+                 xf:BottomBarPageExtensions.TabColor="#7B1FA2" >
+      <Button Text="cccc"
+              Command="{Binding CCommand}"/>
+  </ContentPage>
 
     <ContentPage Title="Recents"
                  Icon="ic_recents.png"
