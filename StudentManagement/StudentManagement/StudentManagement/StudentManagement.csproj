@@ -75,10 +75,24 @@
     <Compile Include="TestGui.xaml.cs">
       <DependentUpon>TestGui.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddStudentsFlow\AddNewStudentPageViewModel.cs" />
+    <Compile Include="ViewModels\AddStudentsFlow\ChooseClassPageViewModel.cs" />
     <Compile Include="ViewModels\AViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassesPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\ScoreBoardPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\StudentDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\StudentsPageViewModel.cs" />
+    <Compile Include="Views\AddStudentsFlow\AddNewStudentPage.xaml.cs">
+      <DependentUpon>AddNewStudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddStudentsFlow\ChooseClassPage.xaml.cs">
+      <DependentUpon>ChooseClassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\A.xaml.cs">
       <DependentUpon>A.xaml</DependentUpon>
     </Compile>
@@ -90,6 +104,24 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\ClassDetailPage.xaml.cs">
+      <DependentUpon>ClassDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\ClassesPage.xaml.cs">
+      <DependentUpon>ClassesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\ScoreBoardPage.xaml.cs">
+      <DependentUpon>ScoreBoardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\StudentDetailPage.xaml.cs">
+      <DependentUpon>StudentDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\StudentsPage.xaml.cs">
+      <DependentUpon>StudentsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +185,54 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\ClassesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\StudentsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\ClassDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\StudentDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\ScoreBoardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddStudentsFlow\AddNewStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddStudentsFlow\ChooseClassPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -8,6 +8,8 @@ using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
+using StudentManagement.Views.AddStudentsFlow;
+using StudentManagement.Views.ViewClassesStudentsFlow;
 using Xamarin.Forms;
 
 namespace StudentManagement
@@ -40,6 +42,16 @@ namespace StudentManagement
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+            //Home Flow
+            Container.RegisterTypeForNavigation<HomePage>();
+            Container.RegisterTypeForNavigation<ClassesPage>();
+            Container.RegisterTypeForNavigation<StudentsPage>();
+            Container.RegisterTypeForNavigation<ClassDetailPage>();
+            Container.RegisterTypeForNavigation<StudentDetailPage>();
+            Container.RegisterTypeForNavigation<ScoreBoardPage>();
+            Container.RegisterTypeForNavigation<AddNewStudentPage>();
+            Container.RegisterTypeForNavigation<ChooseClassPage>();
+
 
             Container.RegisterTypeForNavigation<A>();
             Container.RegisterTypeForNavigation<B>();
