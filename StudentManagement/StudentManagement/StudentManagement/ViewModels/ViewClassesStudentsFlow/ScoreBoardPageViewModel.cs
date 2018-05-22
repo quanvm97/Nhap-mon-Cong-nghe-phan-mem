@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -155,7 +151,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #region Methods
 
-        public void ScoreBoardItemTapped(Student student)
+        public void ScoreBoardItemTapped(Student student) // ko cần
         {
             //if (_pageType != ScoreBoardPageType.InputScoreBoard)
             //    return;
@@ -163,7 +159,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 { ParamKey.StudentInfo.ToString(), student }
             };
-            //NavigationService.NavigateAsync(PageManager.StudentScorePage, navParam);
+            //NavigationService.NavigateAsync("StudentScorePage", navParam);
         }
 
         #endregion

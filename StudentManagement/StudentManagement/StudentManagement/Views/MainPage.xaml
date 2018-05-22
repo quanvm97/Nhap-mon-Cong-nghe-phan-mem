@@ -8,25 +8,28 @@
                   xmlns:views="clr-namespace:StudentManagement.Views;assembly=StudentManagement"
                   xmlns:reportsFlow="clr-namespace:StudentManagement.Views.ReportsFlow;assembly=StudentManagement"
                   xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
+                  xmlns:addStudentsFlow="clr-namespace:StudentManagement.Views.AddStudentsFlow;assembly=StudentManagement"
                   Title="{Binding PageTitle}">
 
-  <viewClassesStudentsFlow:HomePage Icon="ic_favorites.png"
+  <viewClassesStudentsFlow:HomePage Icon="ic_home.png"
                                     Title="Home"/>
 
-  <NavigationPage Title="ViewB">
+  <NavigationPage Title="Add Student"
+                  Icon="ic_AddStudent.png">
     <x:Arguments>
-      <views:B Title="ViewB"/>
+      <addStudentsFlow:AddNewStudentPage/>
     </x:Arguments>
   </NavigationPage>
 
-  <NavigationPage Title="ViewB">
+  <NavigationPage Title="Reports"
+                  Icon="ic_Report.png">
     <x:Arguments>
       <reportsFlow:ReportHomePage/>
     </x:Arguments>
   </NavigationPage>
 
   <ContentPage Title="Settings"
-               Icon="ic_restaurants.png"/>
+               Icon="ic_Settings.png"/>
 
 
   <!--<ContentPage Title="Nearby"

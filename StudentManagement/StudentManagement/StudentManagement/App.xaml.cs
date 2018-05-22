@@ -58,6 +58,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ReportHomePage>();
             Container.RegisterTypeForNavigation<ReportBySemesterPage>();
             Container.RegisterTypeForNavigation<ReportBySubjectPage>();
+            Container.RegisterTypeForNavigation<StudentScorePage>();
 
 
             Container.RegisterTypeForNavigation<A>();

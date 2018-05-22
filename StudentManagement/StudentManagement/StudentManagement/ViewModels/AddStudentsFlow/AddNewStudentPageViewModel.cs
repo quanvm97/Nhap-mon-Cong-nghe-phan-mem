@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.AddStudentsFlow
 {
@@ -19,6 +17,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
         public AddNewStudentPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) : base(navigationService, dialogService, sqLiteHelper)
         {
             // Set values
+            PageTitle = "Tiếp nhận học sinh";
 
             // Commands
             ContinueCommand = new DelegateCommand(ContinueExecute);

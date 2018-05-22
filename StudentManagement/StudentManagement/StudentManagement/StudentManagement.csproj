@@ -91,6 +91,7 @@
     <Compile Include="ViewModels\ReportsFlow\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySubjectPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportHomePageViewModel.cs" />
+    <Compile Include="ViewModels\ReportsFlow\StudentScorePageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassesPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\HomePageViewModel.cs" />
@@ -126,6 +127,9 @@
     </Compile>
     <Compile Include="Views\ReportsFlow\ReportHomePage.xaml.cs">
       <DependentUpon>ReportHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportsFlow\StudentScorePage.xaml.cs">
+      <DependentUpon>StudentScorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewClassesStudentsFlow\ClassDetailPage.xaml.cs">
       <DependentUpon>ClassDetailPage.xaml</DependentUpon>
@@ -292,6 +296,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReportsFlow\ReportHomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportsFlow\StudentScorePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

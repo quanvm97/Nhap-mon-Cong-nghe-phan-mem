@@ -15,6 +15,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             base(navigationService, dialogService, sqLiteHelper)
         {
             // Commands
+            ViewListStudentCommand = new DelegateCommand(ViewListStudentExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
             AcceptCommand = new DelegateCommand(AcceptExecute);
         }
