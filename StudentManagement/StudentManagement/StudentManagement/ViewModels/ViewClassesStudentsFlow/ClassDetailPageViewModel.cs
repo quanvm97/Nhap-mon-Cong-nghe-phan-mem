@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
     public class ClassDetailPageViewModel : ViewModelBase
     {
-        public ClassDetailPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) : 
+        public ClassDetailPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) :
             base(navigationService, dialogService, sqLiteHelper)
         {
             // Commands
@@ -160,7 +155,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 case DetailClassPageType.ClassInfo:
                     IsClassAcceptStudent = false;
                     IsClassInfo = true;
-                    PageTitle = "Thông tin lớp";
+                    PageTitle = "Thông tin";
                     break;
 
                 case DetailClassPageType.ClassAcceptStudent:

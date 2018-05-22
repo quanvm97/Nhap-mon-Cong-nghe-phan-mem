@@ -1,14 +1,12 @@
-﻿using System;
-using DryIoc;
+﻿using DryIoc;
 using Prism.DryIoc;
-using Prism.Navigation;
-using StudentManagement.Enums;
-using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Interfaces.Navigator;
 using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
 using StudentManagement.Views.AddStudentsFlow;
+using StudentManagement.Views.ReportsFlow;
 using StudentManagement.Views.ViewClassesStudentsFlow;
 using Xamarin.Forms;
 
@@ -19,11 +17,13 @@ namespace StudentManagement
         #region Properties
 
         private ISQLiteHelper _sqLiteHelper;
+        public INavService Navigator { get; internal set; }
+
         #endregion
 
         public App()
         {
-            
+
         }
 
         protected override async void OnInitialized()
@@ -33,6 +33,7 @@ namespace StudentManagement
             InitializeComponent();
 
             await NavigationService.NavigateAsync("MainPage");
+            //await Navigator.PushModal("MainPage");
             //await NavigationService.NavigateAsync("NavigationPage/MainPage");
             //StartApp();
         }
@@ -42,6 +43,7 @@ namespace StudentManagement
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+
             //Home Flow
             Container.RegisterTypeForNavigation<HomePage>();
             Container.RegisterTypeForNavigation<ClassesPage>();
@@ -51,6 +53,11 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ScoreBoardPage>();
             Container.RegisterTypeForNavigation<AddNewStudentPage>();
             Container.RegisterTypeForNavigation<ChooseClassPage>();
+
+            //Reports Flow
+            Container.RegisterTypeForNavigation<ReportHomePage>();
+            Container.RegisterTypeForNavigation<ReportBySemesterPage>();
+            Container.RegisterTypeForNavigation<ReportBySubjectPage>();
 
 
             Container.RegisterTypeForNavigation<A>();

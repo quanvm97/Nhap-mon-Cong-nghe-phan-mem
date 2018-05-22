@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
     public class StudentsPageViewModel : ViewModelBase
     {
-        public StudentsPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) : 
+        public StudentsPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) :
             base(navigationService, dialogService, sqLiteHelper)
         {
             SetListStudentData();
-            Title = "Học sinh";
+            Title = "Danh sách";
         }
 
         #region property
@@ -34,7 +30,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         private Class _class;
 
-       
+
         private string _title;
 
         public string Title
@@ -71,7 +67,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
         }
 
-       
+
 
         private async void SetListStudentData()
         {
@@ -83,7 +79,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 {
                     student.GetAvgScore(Database);
                 }
-                Students  = new ObservableCollection<Student>(students);
+                Students = new ObservableCollection<Student>(students);
             });
             //LoadingPopup.Instance.HideLoading();
         }

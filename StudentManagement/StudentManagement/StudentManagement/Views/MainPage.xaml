@@ -3,36 +3,66 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="StudentManagement.Views.MainPage"
                   xmlns:xf="clr-namespace:BottomBar.XamarinForms"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  prism:ViewModelLocator.AutowireViewModel="True"
                   xmlns:views="clr-namespace:StudentManagement.Views;assembly=StudentManagement"
+                  xmlns:reportsFlow="clr-namespace:StudentManagement.Views.ReportsFlow;assembly=StudentManagement"
+                  xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
                   Title="{Binding PageTitle}">
 
-  <NavigationPage Title="ViewA">
-        <x:Arguments>
-            <views:A/>
-        </x:Arguments>
+  <!--<TabbedPage Title="ViewA">
+    <NavigationPage>
+      <x:Arguments>
+        <viewClassesStudentsFlow:ClassesPage/>
+      </x:Arguments>
     </NavigationPage>
-
-    <NavigationPage Title="ViewB">
-        <x:Arguments>
-            <views:B Title="ViewB"/>
-        </x:Arguments>
+    <NavigationPage>
+      <x:Arguments>
+        <viewClassesStudentsFlow:StudentsPage/>
+      </x:Arguments>
     </NavigationPage>
+  </TabbedPage>-->
 
-  <ContentPage Title="Nearby"
+  <!--<NavigationPage
+      Icon="ic_favorites.png"
+      xf:BottomBarPageExtensions.TabColor="#7B1FA2">
+    <x:Arguments>-->
+  <viewClassesStudentsFlow:HomePage Icon="ic_favorites.png"
+                                    Title="Home"
+                                    xf:BottomBarPageExtensions.TabColor="#7B1FA2"/>
+  <!--</x:Arguments>
+  </NavigationPage>-->
+
+  <!--<NavigationPage Title="ViewB">
+    <x:Arguments>-->
+  <views:B Title="ViewB"
+           xf:BottomBarPageExtensions.TabColor="#FF5252"/>
+  <!--</x:Arguments>
+  </NavigationPage>-->
+
+  <NavigationPage Title="ViewB">
+    <x:Arguments>
+      <reportsFlow:ReportHomePage Icon="ic_favorites.png" />
+    </x:Arguments>
+  </NavigationPage>
+
+
+
+  <!--<ContentPage Title="Nearby"
                  Icon="ic_favorites.png"
                  xf:BottomBarPageExtensions.TabColor="#7B1FA2" >
-      <Button Text="cccc"
-              Command="{Binding CCommand}"/>
-  </ContentPage>
+    <Button Text="cccc"
+            Command="{Binding CCommand}"/>
+  </ContentPage>-->
 
-    <ContentPage Title="Recents"
-                 Icon="ic_recents.png"
-                 xf:BottomBarPageExtensions.TabColor="#FF5252"
-                 xf:BottomBarPageExtensions.BadgeCount="2"
-                 xf:BottomBarPageExtensions.BadgeColor="Black" />
+  <!--<ContentPage Title="Recents"
+               Icon="ic_recents.png"
+               xf:BottomBarPageExtensions.TabColor="#FF5252"
+               xf:BottomBarPageExtensions.BadgeCount="2"
+               xf:BottomBarPageExtensions.BadgeColor="Black" />-->
 
-    <ContentPage Title="Restaurants"
-                 Icon="ic_restaurants.png"
-                 xf:BottomBarPageExtensions.TabColor="#FF9800" />
+  <ContentPage Title="Restaurants"
+               Icon="ic_restaurants.png"
+               xf:BottomBarPageExtensions.TabColor="#FF9800" />
 
 </xf:BottomBarPage>

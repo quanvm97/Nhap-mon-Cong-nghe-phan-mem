@@ -4,13 +4,13 @@
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.ClassesPage"
              xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              mvvm:ViewModelLocator.AutowireViewModel="True"
-             Title="Lớp">
+             Title="Danh sách">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Search"
                      Icon="ic_search_white.png"
                      Command="{Binding SearchToolbarItemsCommand}"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="ListViewClasses"

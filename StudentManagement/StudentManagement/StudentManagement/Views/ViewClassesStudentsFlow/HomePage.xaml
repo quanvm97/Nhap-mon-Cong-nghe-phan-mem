@@ -3,7 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.HomePage"
+            xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            mvvm:ViewModelLocator.AutowireViewModel="True"
             Title="Danh sách">
-    <viewClassesStudentsFlow:ClassesPage/>
-    <viewClassesStudentsFlow:StudentsPage/>
+
+    <!--<NavigationPage>
+        <x:Arguments>
+            <TabbedPage>-->
+    <!--<TabbedPage.Children >-->
+    <NavigationPage Title="Lớp">
+        <x:Arguments>
+            <viewClassesStudentsFlow:ClassesPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Học sinh">
+        <x:Arguments>
+            <viewClassesStudentsFlow:StudentsPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <!--</TabbedPage.Children>-->
+    <!--</TabbedPage>
+        </x:Arguments>
+    </NavigationPage>-->
+
 </TabbedPage>

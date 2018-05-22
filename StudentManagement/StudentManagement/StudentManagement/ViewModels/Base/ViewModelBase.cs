@@ -1,9 +1,11 @@
-﻿using System.Windows.Input;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Interfaces;
+using StudentManagement.Interfaces.Navigator;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels.Base
 {
@@ -12,6 +14,8 @@ namespace StudentManagement.ViewModels.Base
         public INavigationService NavigationService { get; private set; }
         public IPageDialogService Dialog { get; private set; }
         public ISQLiteHelper Database { get; private set; }
+        public INavService Navigator { get; internal set; }
+
         public ICommand BCommand { get; set; }
 
         private async void BExecute()
@@ -31,7 +35,17 @@ namespace StudentManagement.ViewModels.Base
         private async void CExecute()
         {
             await NavigationService.NavigateAsync("C");
+            //await Navigator.PushModal("C");
         }
+
+        public ICommand BackCommand { get; set; }
+
+        private async void BackCommandExecute()
+        {
+            //await Navigator.Home();
+            await Application.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
         public ViewModelBase(
             INavigationService navigationService = null,
             IPageDialogService dialogService = null,
@@ -40,6 +54,8 @@ namespace StudentManagement.ViewModels.Base
             if (navigationService != null) NavigationService = navigationService;
             if (dialogService != null) Dialog = dialogService;
             if (sqLiteHelper != null) Database = sqLiteHelper;
+
+            BackCommand = new DelegateCommand(BackCommandExecute);
 
             BCommand = new DelegateCommand(BExecute);
 
