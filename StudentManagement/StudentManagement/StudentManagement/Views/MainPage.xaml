@@ -10,59 +10,36 @@
                   xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
                   Title="{Binding PageTitle}">
 
-  <!--<TabbedPage Title="ViewA">
-    <NavigationPage>
-      <x:Arguments>
-        <viewClassesStudentsFlow:ClassesPage/>
-      </x:Arguments>
-    </NavigationPage>
-    <NavigationPage>
-      <x:Arguments>
-        <viewClassesStudentsFlow:StudentsPage/>
-      </x:Arguments>
-    </NavigationPage>
-  </TabbedPage>-->
-
-  <!--<NavigationPage
-      Icon="ic_favorites.png"
-      xf:BottomBarPageExtensions.TabColor="#7B1FA2">
-    <x:Arguments>-->
   <viewClassesStudentsFlow:HomePage Icon="ic_favorites.png"
-                                    Title="Home"
-                                    xf:BottomBarPageExtensions.TabColor="#7B1FA2"/>
-  <!--</x:Arguments>
-  </NavigationPage>-->
-
-  <!--<NavigationPage Title="ViewB">
-    <x:Arguments>-->
-  <views:B Title="ViewB"
-           xf:BottomBarPageExtensions.TabColor="#FF5252"/>
-  <!--</x:Arguments>
-  </NavigationPage>-->
+                                    Title="Home"/>
 
   <NavigationPage Title="ViewB">
     <x:Arguments>
-      <reportsFlow:ReportHomePage Icon="ic_favorites.png" />
+      <views:B Title="ViewB"/>
     </x:Arguments>
   </NavigationPage>
 
+  <NavigationPage Title="ViewB">
+    <x:Arguments>
+      <reportsFlow:ReportHomePage/>
+    </x:Arguments>
+  </NavigationPage>
+
+  <ContentPage Title="Settings"
+               Icon="ic_restaurants.png"/>
 
 
   <!--<ContentPage Title="Nearby"
-                 Icon="ic_favorites.png"
-                 xf:BottomBarPageExtensions.TabColor="#7B1FA2" >
-    <Button Text="cccc"
-            Command="{Binding CCommand}"/>
-  </ContentPage>-->
+                         Icon="ic_favorites.png"
+                         xf:BottomBarPageExtensions.TabColor="#7B1FA2" >
+            <Button Text="cccc"
+                    Command="{Binding CCommand}"/>
+          </ContentPage>-->
 
   <!--<ContentPage Title="Recents"
-               Icon="ic_recents.png"
-               xf:BottomBarPageExtensions.TabColor="#FF5252"
-               xf:BottomBarPageExtensions.BadgeCount="2"
-               xf:BottomBarPageExtensions.BadgeColor="Black" />-->
-
-  <ContentPage Title="Restaurants"
-               Icon="ic_restaurants.png"
-               xf:BottomBarPageExtensions.TabColor="#FF9800" />
+                       Icon="ic_recents.png"
+                       xf:BottomBarPageExtensions.TabColor="#FF5252"
+                       xf:BottomBarPageExtensions.BadgeCount="2"
+                       xf:BottomBarPageExtensions.BadgeColor="Black" />-->
 
 </xf:BottomBarPage>
