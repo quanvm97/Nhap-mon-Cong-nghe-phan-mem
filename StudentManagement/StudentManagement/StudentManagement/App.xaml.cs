@@ -1,13 +1,18 @@
 ﻿using DryIoc;
 using Prism.DryIoc;
+using Prism.Navigation;
+using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Interfaces.Navigator;
 using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
 using StudentManagement.Views.AddStudentsFlow;
+using StudentManagement.Views.MainPageTabbed;
 using StudentManagement.Views.ReportsFlow;
 using StudentManagement.Views.ViewClassesStudentsFlow;
+using System;
 using Xamarin.Forms;
 
 namespace StudentManagement
@@ -32,17 +37,23 @@ namespace StudentManagement
             InitMockData();
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("MainPage");
+            //await NavigationService.NavigateAsync("MainPage");
+            StartApp();
+
             //await Navigator.PushModal("MainPage");
             //await NavigationService.NavigateAsync("NavigationPage/MainPage");
-            //StartApp();
         }
 
         protected override void RegisterTypes()
         {
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
+            Container.RegisterTypeForNavigation<LoginPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+
+            //MainPagetabbed
+            Container.RegisterTypeForNavigation<PrincipalRoleMainPage>();
+            Container.RegisterTypeForNavigation<TeacherRoleMainPage>();
 
             //Home Flow
             Container.RegisterTypeForNavigation<HomePage>();
@@ -91,6 +102,38 @@ namespace StudentManagement
                 var mockData = new MockData(_sqLiteHelper);
                 mockData.InitMockData();
             }
+        }
+
+        private async void StartApp()
+        {
+            var user = _sqLiteHelper.GetUser();
+
+            string uri = string.Empty;
+            var navParam = new NavigationParameters();
+
+            if (user == null)
+                uri = "LoginPage";
+            // If PrincipalRole
+            else if (user.Role.Equals(RoleManager.PrincipalRole))
+                uri = "PrincipalRoleMainPage";
+            // If TeacherRole
+            else if (user.Role.Equals(RoleManager.TeacherRole))
+            {
+                uri = "TeacherRoleMainPage";
+                var classInfo = _sqLiteHelper.Get<Class>(c => c.Id == user.ClassId);
+                classInfo.CountStudent(_sqLiteHelper);
+                navParam.Add(ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo);
+                navParam.Add(ParamKey.ClassInfo.ToString(), classInfo);
+            }
+            // If StudentRole
+            else
+            {
+                uri = "StudentRoleMainPage";
+                navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
+                navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
+            }
+
+            await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"), navParam);
         }
 
         //private async void StartApp()

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
+﻿using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using StudentManagement.Helpers;
-using StudentManagement.ViewModels;
-using Xamarin.Forms.Xaml;
+using System;
+using System.Threading.Tasks;
 
 namespace StudentManagement.Views.Popups
 {
@@ -26,7 +24,7 @@ namespace StudentManagement.Views.Popups
         private static ConfirmPasswordPopup _instance;
 
         public static ConfirmPasswordPopup Instance => _instance ?? (_instance = new ConfirmPasswordPopup());
-        
+
         public void Show(string username)
         {
             _isCorrectPassword = false;
@@ -75,14 +73,14 @@ namespace StudentManagement.Views.Popups
                 _isCorrectPassword = false;
                 _isDisappeared = true;
                 _isFinishConfirm = true;
-                ReturnResult();
+                // ReturnResult();
             }
         }
 
         private void ReturnResult()
         {
             if (!_isDisappeared) Navigation.PopPopupAsync();
-            DetailStudentPageViewModel.Instance.OnReceiveConfirmPasswordResult(_isCorrectPassword);
+            //DetailStudentPageViewModel.Instance.OnReceiveConfirmPasswordResult(_isCorrectPassword);
         }
     }
 }

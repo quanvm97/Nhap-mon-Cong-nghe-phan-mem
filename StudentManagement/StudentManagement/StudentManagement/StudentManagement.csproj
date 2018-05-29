@@ -87,6 +87,9 @@
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BViewModel.cs" />
     <Compile Include="ViewModels\CViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageTabbed\PrincipalRoleMainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageTabbed\TeacherRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySubjectPageViewModel.cs" />
@@ -113,8 +116,20 @@
     <Compile Include="Views\C.xaml.cs">
       <DependentUpon>C.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPageTabbed\PrincipalRoleMainPage.xaml.cs">
+      <DependentUpon>PrincipalRoleMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPageTabbed\TeacherRoleMainPage.xaml.cs">
+      <DependentUpon>TeacherRoleMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\ConfirmPasswordPopup.xaml.cs">
+      <DependentUpon>ConfirmPasswordPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Popups\LoadingPopup.xaml.cs">
       <DependentUpon>LoadingPopup.xaml</DependentUpon>
@@ -303,6 +318,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\ReportsFlow\StudentScorePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Popups\ConfirmPasswordPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainPageTabbed\PrincipalRoleMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainPageTabbed\TeacherRoleMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

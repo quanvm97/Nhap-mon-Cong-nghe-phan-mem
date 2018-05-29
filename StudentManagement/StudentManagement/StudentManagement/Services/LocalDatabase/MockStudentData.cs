@@ -1,7 +1,7 @@
-﻿using System;
+﻿using StudentManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using StudentManagement.Models;
 
 namespace StudentManagement.Services.LocalDatabase
 {
@@ -3706,7 +3706,7 @@ namespace StudentManagement.Services.LocalDatabase
                 new Student()
                 {
                     Id = 10336,
-                    FullName = "Nguyễn Văn Bảo",
+                    FullName = "Phạm Văn Ngọc",
                     ClassId = 2009,
                     ClassName = "12A2",
                     Gender = 1,
@@ -3717,13 +3717,13 @@ namespace StudentManagement.Services.LocalDatabase
                 new Student()
                 {
                     Id = 10337,
-                    FullName = "Hồ Hoàng Khang",
+                    FullName = "Vũ Minh Hoàng",
                     ClassId = 2001,
                     ClassName = "10A1",
                     Gender = 1,
                     Address = "P.Linh Xuân, Q.Thủ Đức, TP HCM",
                     DoB = DateTime.ParseExact("09/06/1996", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Email = "khanghh@gmail.com"
+                    Email = "hoangvm@gmail.com"
                 },
             };
         }
