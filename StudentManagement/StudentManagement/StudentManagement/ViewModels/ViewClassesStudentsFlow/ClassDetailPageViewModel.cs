@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using System.Linq;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -18,6 +19,10 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             ViewListStudentCommand = new DelegateCommand(ViewListStudentExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
             AcceptCommand = new DelegateCommand(AcceptExecute);
+
+            GetClassInfo();
+
+
         }
 
         #region private properties
@@ -100,7 +105,28 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             NumberOfStudent = classInfo.Students;
             NumberOfBoy = classInfo.Boys;
             NumberOfGirl = classInfo.Girls;
+            
+
         }
+
+
+        #region Get Infor of class that user are teaching
+
+        private void GetClassInfo()
+        {
+            var user = Database.GetUser();
+            Class myclass = Database.Get<Class>(i => i.Id == user.ClassId);
+
+            IsClassAcceptStudent = false;
+            IsClassInfo = true;
+            PageTitle = "Thông tin";
+
+            myclass.CountStudent(Database);
+
+            SetClassInfo(myclass);
+        }
+
+        #endregion
 
 
 
