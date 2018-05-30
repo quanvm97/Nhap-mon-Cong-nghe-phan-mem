@@ -28,7 +28,7 @@ namespace StudentManagement
 
         public App()
         {
-
+             
         }
 
         protected override async void OnInitialized()
@@ -64,6 +64,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ScoreBoardPage>();
             Container.RegisterTypeForNavigation<AddNewStudentPage>();
             Container.RegisterTypeForNavigation<ChooseClassPage>();
+            Container.RegisterTypeForNavigation<PersonalScoreListPage>();
 
             //Reports Flow
             Container.RegisterTypeForNavigation<ReportHomePage>();

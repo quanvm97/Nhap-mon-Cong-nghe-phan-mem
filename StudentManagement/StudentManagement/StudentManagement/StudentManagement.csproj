@@ -98,6 +98,7 @@
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassesPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ViewClassesStudentsFlow\PersonalScoreListPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ScoreBoardPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\StudentDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\StudentsPageViewModel.cs" />
@@ -154,6 +155,9 @@
     </Compile>
     <Compile Include="Views\ViewClassesStudentsFlow\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewClassesStudentsFlow\PersonalScoreListPage.xaml.cs">
+      <DependentUpon>PersonalScoreListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewClassesStudentsFlow\ScoreBoardPage.xaml.cs">
       <DependentUpon>ScoreBoardPage.xaml</DependentUpon>
@@ -341,6 +345,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPageTabbed\TeacherRoleMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ViewClassesStudentsFlow\PersonalScoreListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
