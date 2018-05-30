@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using StudentManagement.ViewModels.ViewClassesStudentsFlow;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +15,15 @@ namespace StudentManagement.Views.ViewClassesStudentsFlow
         public ClassDetailPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var vm = BindingContext as ClassDetailPageViewModel;
+
+            vm?.OnAppear();
         }
     }
 }

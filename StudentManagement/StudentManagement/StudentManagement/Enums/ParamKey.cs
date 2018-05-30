@@ -7,6 +7,7 @@
         ScoreBoardPageType,
         AddNewStudentType,
         ClassInfo,
+        ClassId,
         StudentInfo,
         NavigateBack,
         Semester,

@@ -7,6 +7,7 @@ using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 using System.Windows.Input;
+using StudentManagement.Helpers;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -20,7 +21,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
             AcceptCommand = new DelegateCommand(AcceptExecute);
 
-            GetClassInfo();
+            //GetClassInfo();
 
 
         }
@@ -98,6 +99,15 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             }
         }
 
+        #region On Appear
+
+        public void OnAppear()
+        {
+            GetClassInfo();
+        }
+
+        #endregion
+
         private void SetClassInfo(Class classInfo)
         {
             _class = classInfo;
@@ -115,15 +125,20 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         private void GetClassInfo()
         {
             var user = Database.GetUser();
-            Class myclass = Database.Get<Class>(i => i.Id == user.ClassId);
 
-            IsClassAcceptStudent = false;
-            IsClassInfo = true;
-            PageTitle = "Thông tin";
+            if (user.Role == RoleManager.TeacherRole)
+            {
+                Class myclass = Database.Get<Class>(i => i.Id == user.ClassId);
 
-            myclass.CountStudent(Database);
+                IsClassAcceptStudent = false;
+                IsClassInfo = true;
+                PageTitle = "Thông tin";
 
-            SetClassInfo(myclass);
+                myclass.CountStudent(Database);
+
+                SetClassInfo(myclass);
+            }
+            
         }
 
         #endregion

@@ -6,6 +6,7 @@ using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -39,6 +40,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             set => SetProperty(ref _title, value);
         }
 
+        private bool showOneClassOnly = false;
+
         #endregion
 
         #region override
@@ -52,12 +55,30 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 if (parameters.ContainsKey(ParamKey.ClassInfo.ToString()))
                 {
                     SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
+                    showOneClassOnly = true;
                     return;
                 }
             }
 
             SetListStudentData();
             Title = "Học sinh";
+        }
+
+        public override void OnNavigatedBackTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey(ParamKey.NeedReload.ToString()) && 
+                parameters.ContainsKey(ParamKey.ClassId.ToString()) &&
+                (bool) parameters[ParamKey.NeedReload.ToString()] == true &&
+                showOneClassOnly)
+            {
+                int classid = (int) parameters[ParamKey.ClassId.ToString()];
+
+                Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == classid));
+            }
+            else
+            {
+                SetListStudentData();
+            }
         }
 
         private void SetClassInfo(Class classInfo)

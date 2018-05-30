@@ -11,6 +11,7 @@ using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -20,7 +21,17 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             base(navigationService, dialogService, sqLiteHelper)
         {
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
+            RemoveStudentCommand = new DelegateCommand(RemoveStudentExecute);
+            EditStudentCommand = new DelegateCommand(EditStudentExecute);
+
+            Instance = this;
         }
+
+        #region Instance 
+
+        public static StudentDetailPageViewModel Instance;
+
+        #endregion
 
         #region private properties
 
@@ -198,24 +209,35 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             if (isAccept)
             {
                 var user = Database.GetUser();
-                //ConfirmPasswordPopup.Instance.Show(user.Name);
+                ConfirmPasswordPopup.Instance.Show(user.Name);
             }
         }
 
         public async void OnReceiveConfirmPasswordResult(bool isCorrectPassword)
         {
-            //if (isCorrectPassword)
-            //{
-            //    Database.Delete(_student);
-            //    await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
-            //    string uri = PageManager.MultiplePage(new[]
-            //    {
-            //        PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
-            //    });
-            //    await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
-            //}
+            if (isCorrectPassword)
+            {
+                Database.Delete(_student);
+                await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
+                var param = new NavigationParameters()
+                {
+                    {ParamKey.NeedReload.ToString(), true},
+                    {ParamKey.ClassId.ToString(), _student.ClassId }
+                };
+                await NavigationService.GoBackAsync(param);
 
-            //await Dialog.DisplayAlertAsync("Thông báo", "Mật khẩu không chính xác hoặc người dùng không tồn tại. Vui lòng thử lại", "OK");
+                //string uri = PageManager.MultiplePage(new[]
+                //{
+                //    PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                //});
+                //await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
+            }
+            else
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Mật khẩu không chính xác hoặc người dùng không tồn tại. Vui lòng thử lại", "OK");
+            }
+
+            
         }
 
 

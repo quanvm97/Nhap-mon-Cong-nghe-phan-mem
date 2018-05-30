@@ -5,6 +5,10 @@
              mvvm:ViewModelLocator.AutowireViewModel="True"
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.StudentDetailPage"
              Title="Thông tin">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="remove_student.png" Command="{Binding RemoveStudentCommand}"></ToolbarItem>
+        <ToolbarItem Icon="ic_ic_edit_white.png" Command="{Binding EditStudentCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
         <Grid RowSpacing="15">
