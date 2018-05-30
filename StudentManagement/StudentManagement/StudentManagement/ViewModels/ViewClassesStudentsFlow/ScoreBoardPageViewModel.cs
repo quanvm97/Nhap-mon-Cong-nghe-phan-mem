@@ -1,6 +1,7 @@
 ﻿using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
@@ -11,10 +12,16 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
     public class ScoreBoardPageViewModel : ViewModelBase
     {
+
         public ScoreBoardPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) : base(navigationService, dialogService, sqLiteHelper)
         {
             PageTitle = "Bảng điểm";
             SemesterName = "Học kỳ 1";
+
+            user = Database.GetUser();
+            if (user.Role.Equals(RoleManager.TeacherRole))
+                GetScoreClassBoard();
+
         }
 
         #region private properties
@@ -29,6 +36,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         private ScoreBoardPageType _pageType;
         private Class _class;
         private bool _isInitialized;
+
+        private User user;
 
         #endregion
 
@@ -160,6 +169,23 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 { ParamKey.StudentInfo.ToString(), student }
             };
             //NavigationService.NavigateAsync("StudentScorePage", navParam);
+        }
+
+        #endregion
+
+        #region Get Score Board of class that user are teaching
+
+        private void GetScoreClassBoard()
+        {
+            _class = Database.Get<Class>(c => c.Id == user.ClassId);
+
+
+            if (!_isInitialized)
+            {
+                LoadListSubjects();
+                LoadListStudents();
+                LoadListScoreBoard();
+            }
         }
 
         #endregion

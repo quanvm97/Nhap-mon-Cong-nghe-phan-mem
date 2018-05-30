@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xamarinForms:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.MainPageTabbed.StudentRoleMainPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=StudentManagement"
+             xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding PageTitle}">
+
+    <NavigationPage Icon="ic_home.png"
+                    Title="Class Info">
+        <x:Arguments>
+            <viewClassesStudentsFlow:StudentDetailPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Class"
+                    Icon="ic_AddStudent.png">
+        <x:Arguments>
+            <viewClassesStudentsFlow:StudentsPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Class Reports"
+                    Icon="ic_Report.png">
+        <x:Arguments>
+            <viewClassesStudentsFlow:PersonalScoreListPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <ContentPage Title="Settings"
+                 Icon="ic_Settings.png"/>
+
+</xamarinForms:BottomBarPage>

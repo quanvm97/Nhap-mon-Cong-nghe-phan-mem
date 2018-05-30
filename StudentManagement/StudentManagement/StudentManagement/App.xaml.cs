@@ -28,7 +28,7 @@ namespace StudentManagement
 
         public App()
         {
-             
+
         }
 
         protected override async void OnInitialized()
@@ -54,6 +54,7 @@ namespace StudentManagement
             //MainPagetabbed
             Container.RegisterTypeForNavigation<PrincipalRoleMainPage>();
             Container.RegisterTypeForNavigation<TeacherRoleMainPage>();
+            Container.RegisterTypeForNavigation<StudentRoleMainPage>();
 
             //Home Flow
             Container.RegisterTypeForNavigation<HomePage>();

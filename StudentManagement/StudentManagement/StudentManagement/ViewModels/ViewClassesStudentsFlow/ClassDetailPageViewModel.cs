@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -105,7 +104,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             NumberOfStudent = classInfo.Students;
             NumberOfBoy = classInfo.Boys;
             NumberOfGirl = classInfo.Girls;
-            
+
 
         }
 

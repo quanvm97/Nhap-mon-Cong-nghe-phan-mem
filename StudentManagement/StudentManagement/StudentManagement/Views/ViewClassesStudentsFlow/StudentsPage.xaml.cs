@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StudentManagement.Helpers;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.ViewClassesStudentsFlow;
 using Xamarin.Forms;
@@ -23,6 +19,9 @@ namespace StudentManagement.Views.ViewClassesStudentsFlow
             var student = (Student)e.Item;
             ListViewStudents.SelectedItem = null;
             var vm = (StudentsPageViewModel)BindingContext;
+            var user = vm.Database.GetUser();
+            if (user.Role.Equals(RoleManager.StudentRole))
+                return;
             vm.StudentItemTapped(student);
         }
     }
