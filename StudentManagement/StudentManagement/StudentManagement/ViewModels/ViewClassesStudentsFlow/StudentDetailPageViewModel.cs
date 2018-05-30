@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -18,6 +19,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         public StudentDetailPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) :
             base(navigationService, dialogService, sqLiteHelper)
         {
+            ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
         }
 
         #region private properties
@@ -116,6 +118,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
                 {
+                    IsStudentInfo = true;
                     SetStudentInfo((Student)parameters[ParamKey.StudentInfo.ToString()]);
                 }
                 if (parameters.ContainsKey(ParamKey.DetailStudentPageType.ToString()))
@@ -170,7 +173,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 { ParamKey.Semester.ToString(), semester },
                 { ParamKey.StudentInfo.ToString(), _student }
             };
-            //await NavigationService.NavigateAsync(PageManager.PersonalScoreListPage, navParam);
+            await NavigationService.NavigateAsync("PersonalScoreListPage", navParam);
         }
 
         private void SwitchPageMode(DetailStudentPageType type)
@@ -224,7 +227,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 { ParamKey.AddNewStudentType.ToString(), AddNewStudentType.UpdateInfo },
                 { ParamKey.StudentInfo.ToString(), _student }
             };
-            //NavigationService.NavigateAsync(PageManager.AddNewStudentPage, navParam);
+            NavigationService.NavigateAsync("AddNewStudentPage", navParam);
         }
         #endregion
     }

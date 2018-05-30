@@ -6,6 +6,7 @@
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.StudentDetailPage"
              Title="Thông tin">
     <ContentPage.Content>
+        <ScrollView>
         <Grid RowSpacing="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -137,5 +138,6 @@
                         IsVisible="{Binding IsStudentInfo}"/>
             </StackLayout>
         </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

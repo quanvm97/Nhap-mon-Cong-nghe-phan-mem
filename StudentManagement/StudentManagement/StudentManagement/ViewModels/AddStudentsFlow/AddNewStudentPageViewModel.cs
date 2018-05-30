@@ -18,6 +18,8 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
         {
             // Set values
             PageTitle = "Tiếp nhận học sinh";
+            DoB = new DateTime(2001, 1, 1);
+            ButtonName = "Tiếp theo";
 
             // Commands
             ContinueCommand = new DelegateCommand(ContinueExecute);
@@ -89,6 +91,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                 if (parameters.ContainsKey(ParamKey.AddNewStudentType.ToString()))
                 {
                     SwitchPageType((AddNewStudentType)parameters[ParamKey.AddNewStudentType.ToString()]);
+                    
                 }
                 else
                 {
