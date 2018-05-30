@@ -13,6 +13,8 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.AddStudentsFlow;
+using StudentManagement.Views.Popups;
 using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
@@ -67,6 +69,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             //var serchResult = Classes.Where(s => StringHelper.RemoveUnicodeCharacter(s.Name.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
             //Classes = new ObservableCollection<Class>(serchResult);
+
+            ConfirmPasswordPopup.Instance.Show("A");
         }
 
         #endregion

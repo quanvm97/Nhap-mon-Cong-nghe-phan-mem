@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using StudentManagement.Interfaces;
+﻿using StudentManagement.Interfaces;
 using StudentManagement.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentManagement.Helpers
 {
@@ -18,7 +18,7 @@ namespace StudentManagement.Helpers
 
         public bool Login(ISQLiteHelper db, string username, string password)
         {
-            var user = _users.FirstOrDefault(u => u.UserName.ToLower().Equals(username.Trim().ToLower()) 
+            var user = _users.FirstOrDefault(u => u.UserName.ToLower().Equals(username.Trim().ToLower())
                                                   && u.Password.Equals(password));
             if (user == null)
                 return false;
@@ -44,10 +44,10 @@ namespace StudentManagement.Helpers
 
         public void Logout(ISQLiteHelper db)
         {
-            db.DeleteAll<User>(); 
+            db.DeleteAll<User>();
         }
 
-        
+
         private void InitData()
         {
             _users = new List<User>
@@ -55,41 +55,41 @@ namespace StudentManagement.Helpers
                 new User
                 {
                     Id = 10336,
-                    Name = "Nguyễn Văn Bảo",
+                    Name = "Phạm Văn Ngọc",
                     Avatar = "student_boy.png",
                     Role = RoleManager.StudentRole,
-                    UserName = "baonv@gmail.com",
-                    Password = "bao123",
+                    UserName = "ngocpv@gmail.com",
+                    Password = "ngoc123",
                     ClassId = 2009,
                 },
                 new User
                 {
                     Id = 10337,
-                    Name = "Hồ Hoàng Khang",
+                    Name = "Vũ Minh Hoàng",
                     Avatar = "student_boy.png",
                     Role = RoleManager.StudentRole,
-                    UserName = "khanghh@gmail.com",
-                    Password = "khang123",
+                    UserName = "hoangvm@gmail.com",
+                    Password = "hoang123",
                     ClassId = 2001
                 },
                 new User
                 {
                     Id = 1,
-                    Name = "Phan Tấn Thành",
-                    Avatar = "teacher_4.png",
+                    Name = "Hoàng Thị Thảo",
+                    Avatar = "teacher_1.png",
                     Role = RoleManager.TeacherRole,
-                    UserName = "thanhpt@gmail.com",
-                    Password = "thanh123",
+                    UserName = "thaoht@gmail.com",
+                    Password = "thao123",
                     ClassId = 2005
                 },
                 new User
                 {
                     Id = 1,
-                    Name = "Huỳnh Hoa Trung Kiên",
+                    Name = "Võ Minh Quân",
                     Avatar = "teacher_5.png",
                     Role = RoleManager.PrincipalRole,
-                    UserName = "kienhht@gmail.com",
-                    Password = "kien123"
+                    UserName = "quanvm@gmail.com",
+                    Password = "quan123"
                 },
             };
         }
