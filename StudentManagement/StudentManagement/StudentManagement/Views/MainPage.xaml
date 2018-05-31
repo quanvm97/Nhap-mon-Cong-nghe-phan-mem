@@ -18,5 +18,8 @@
     <ContentPage Title="Restaurants"
                  Icon="ic_restaurants.png"
                  xf:BottomBarPageExtensions.TabColor="#FF9800" />
+   <ContentPage Title="Setting"
+                 Icon=""
+                 xf:BottomBarPageExtensions.TabColor="#FF9000" />
 
 </xf:BottomBarPage>

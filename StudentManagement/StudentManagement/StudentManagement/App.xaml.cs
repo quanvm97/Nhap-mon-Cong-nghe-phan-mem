@@ -31,6 +31,8 @@ namespace StudentManagement
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
+
+            //await NavigationService.NavigateAsync("NavigationPage/TestGui");
             //StartApp();
         }
 
@@ -39,6 +41,7 @@ namespace StudentManagement
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+            //Container.RegisterTypeForNavigation<TestGui>();
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
