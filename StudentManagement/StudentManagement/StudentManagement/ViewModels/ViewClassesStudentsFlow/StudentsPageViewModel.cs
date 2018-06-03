@@ -1,11 +1,15 @@
-﻿using Prism.Navigation;
+﻿using Prism.Commands;
+using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -14,11 +18,91 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         public StudentsPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) :
             base(navigationService, dialogService, sqLiteHelper)
         {
-            SetListStudentData();
             Title = "Danh sách";
+
+            user = Database.GetUser();
+
+            if (user.Role.Equals(RoleManager.StudentRole))
+                GetStudentsInClass();
+            else if (!user.Role.Equals(RoleManager.TeacherRole))
+                SetListStudentData();
+
+            // Commands
+            SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
+            SearchIconCommand = new DelegateCommand(SearchIconExecute);
+        }
+
+        #region Properties
+
+        private bool _showSearchBox;
+        public bool ShowSearchBox
+        {
+            get => _showSearchBox;
+            set => SetProperty(ref _showSearchBox, value);
+        }
+
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                SetProperty(ref _searchText, value);
+                SearchExecute(value);
+            }
+        }
+
+        #endregion
+
+        #region Search Execute
+
+        private void SearchExecute(string text)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                var serchResult = ListStudents.Where(s =>
+                    StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+                        .Contains(StringHelper.RemoveUnicodeCharacter(text.ToLower())));
+                Students = new ObservableCollection<Student>(serchResult);
+            }
+            else
+                Students = ListStudents;
+
+        }
+
+        #endregion
+
+        #region Search student
+
+        // Commands
+        public ICommand SearchToolbarItemsCommand { get; set; }
+        public ICommand SearchIconCommand { get; set; }
+
+        private void SearchToolbarItemsExecute()
+        {
+            ShowSearchBox = !ShowSearchBox;
+        }
+
+        private void SearchIconExecute()
+        {
+            //var serchResult = Students.Where(s =>
+            //    StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+            //        .Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+            //Students = new ObservableCollection<Student>(serchResult);
+        }
+
+        #endregion
+
+        private void GetStudentsInClass()
+        {
+            var classStudent = Database.Get<Class>(s => s.Id == user.ClassId);
+            SetClassInfo(classStudent);
+            PageTitle = "Thông tin học sinh";
         }
 
         #region property
+
+        private User user;
 
         private ObservableCollection<Student> _students;
 
@@ -26,6 +110,14 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             get => _students;
             set => SetProperty(ref _students, value);
+        }
+
+        private ObservableCollection<Student> _listStudents;
+
+        public ObservableCollection<Student> ListStudents
+        {
+            get => _listStudents;
+            set => SetProperty(ref _listStudents, value);
         }
 
         private Class _class;
@@ -64,7 +156,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             _class = classInfo;
             Title = "Danh sách lớp " + _class.Name;
-            Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
+            ListStudents = Students =
+                new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
         }
 
 
@@ -79,7 +172,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 {
                     student.GetAvgScore(Database);
                 }
-                Students = new ObservableCollection<Student>(students);
+                ListStudents = Students = new ObservableCollection<Student>(students);
             });
             //LoadingPopup.Instance.HideLoading();
         }

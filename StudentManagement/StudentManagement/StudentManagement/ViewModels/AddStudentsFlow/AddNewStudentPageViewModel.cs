@@ -2,6 +2,7 @@
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
@@ -91,7 +92,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                 if (parameters.ContainsKey(ParamKey.AddNewStudentType.ToString()))
                 {
                     SwitchPageType((AddNewStudentType)parameters[ParamKey.AddNewStudentType.ToString()]);
-                    
+
                 }
                 else
                 {
@@ -113,7 +114,8 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                 return;
             }
 
-            if (settings.MinStudentAge > 2017 - DoB.Year || settings.MaxStudentAge < 2017 - DoB.Year)
+            if (settings.MinStudentAge > DateTime.Now.Year - DoB.Year ||
+                settings.MaxStudentAge < DateTime.Now.Year - DoB.Year)
             {
                 await Dialog.DisplayAlertAsync("Thông báo", "Tuổi của học sinh không hợp lệ", "OK");
                 return;
@@ -164,16 +166,18 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
         private void SwitchPageType(AddNewStudentType type)
         {
             _type = type;
+            var user = Database.GetUser();
+
             switch (type)
             {
                 case AddNewStudentType.AddNew:
-                    PageTitle = "Tiếp nhận học sinh";
+                    PageTitle = user.Role.Equals(RoleManager.PrincipalRole) ? "Tiếp nhận" : "Tiếp nhận học sinh";
                     DoB = new DateTime(2001, 1, 1);
                     ButtonName = "Tiếp theo";
                     break;
 
                 case AddNewStudentType.UpdateInfo:
-                    PageTitle = "Sửa thông tin học sinh";
+                    PageTitle = user.Role.Equals(RoleManager.PrincipalRole) ? "Sửa thông tin" : "Sửa thông tin học sinh";
                     ButtonName = "Lưu";
                     break;
             }

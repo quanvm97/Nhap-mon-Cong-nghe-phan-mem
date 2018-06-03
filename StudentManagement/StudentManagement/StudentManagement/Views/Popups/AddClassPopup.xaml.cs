@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
+﻿using Rg.Plugins.Popup.Extensions;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
-using StudentManagement.ViewModels;
+using StudentManagement.ViewModels.CommonPage;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
 namespace StudentManagement.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddClassPopup 
+    public partial class AddClassPopup
     {
         private ISQLiteHelper _db;
 

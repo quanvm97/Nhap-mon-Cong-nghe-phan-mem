@@ -7,8 +7,8 @@ using StudentManagement.Interfaces;
 using StudentManagement.Interfaces.Navigator;
 using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
-using StudentManagement.Views;
 using StudentManagement.Views.AddStudentsFlow;
+using StudentManagement.Views.CommonPage;
 using StudentManagement.Views.MainPageTabbed;
 using StudentManagement.Views.ReportsFlow;
 using StudentManagement.Views.ViewClassesStudentsFlow;
@@ -48,8 +48,14 @@ namespace StudentManagement
         {
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>();
+
+            //CommonPage
             Container.RegisterTypeForNavigation<LoginPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<SettingsPage>();
+            Container.RegisterTypeForNavigation<ChangeRegulationsPage>();
+            Container.RegisterTypeForNavigation<ChangeClassesInfoPage>();
+            Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>();
+            //Container.RegisterTypeForNavigation<MainPage>();
 
             //MainPagetabbed
             Container.RegisterTypeForNavigation<PrincipalRoleMainPage>();
@@ -74,9 +80,9 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<StudentScorePage>();
 
 
-            Container.RegisterTypeForNavigation<A>();
-            Container.RegisterTypeForNavigation<B>();
-            Container.RegisterTypeForNavigation<C>();
+            //Container.RegisterTypeForNavigation<A>();
+            //Container.RegisterTypeForNavigation<B>();
+            //Container.RegisterTypeForNavigation<C>();
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
@@ -170,7 +176,7 @@ namespace StudentManagement
         //        navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
         //    }
 
-        //    await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
+        //    await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"), navParam);
         //}
     }
 }

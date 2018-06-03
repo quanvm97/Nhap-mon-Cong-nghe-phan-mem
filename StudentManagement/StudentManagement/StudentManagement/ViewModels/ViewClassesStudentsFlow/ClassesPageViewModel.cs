@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -13,9 +6,9 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
-using StudentManagement.Views.AddStudentsFlow;
-using StudentManagement.Views.Popups;
-using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -25,13 +18,15 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             base(navigationService, dialogService, sqLiteHelper)
         {
             SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
+            SearchIconCommand = new DelegateCommand(SearchIconExecute);
 
             var classes = sqLiteHelper.GetList<Class>(c => c.Id > 0);
             foreach (var c in classes) c.CountStudent(sqLiteHelper);
-            Classes = new ObservableCollection<Class>(classes);
-        }
+            ListClass = Classes = new ObservableCollection<Class>(classes);
 
-        
+            ShowSearchBox = false;
+
+        }
 
         #region property
 
@@ -43,12 +38,24 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             set => SetProperty(ref _classes, value);
         }
 
+        private ObservableCollection<Class> _listClass;
+
+        public ObservableCollection<Class> ListClass
+        {
+            get => _listClass;
+            set => SetProperty(ref _listClass, value);
+        }
+
         private string _searchText;
 
         public string SearchText
         {
             get => _searchText;
-            set => SetProperty(ref _searchText, value);
+            set
+            {
+                SetProperty(ref _searchText, value);
+                SearchExecute(value);
+            }
         }
 
         private bool _showSearchBox;
@@ -61,20 +68,41 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #endregion
 
+        #region Search Execute
+
+        private void SearchExecute(string text)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                var serchResult = ListClass.Where(s =>
+                    StringHelper.RemoveUnicodeCharacter(s.Name.ToLower())
+                        .Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+                Classes = new ObservableCollection<Class>(serchResult);
+            }
+            else
+                Classes = ListClass;
+
+        }
+
+        #endregion
+
         #region Search Command
 
         public ICommand SearchToolbarItemsCommand { get; set; }
 
         private void SearchToolbarItemsExecute()
         {
+            ShowSearchBox = !ShowSearchBox;
+        }
+        public ICommand SearchIconCommand { get; set; }
+
+        private void SearchIconExecute()
+        {
             //var serchResult = Classes.Where(s => StringHelper.RemoveUnicodeCharacter(s.Name.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
             //Classes = new ObservableCollection<Class>(serchResult);
-
-            ConfirmPasswordPopup.Instance.Show("A");
         }
 
         #endregion
-
 
         public void ClassesItemTapped(Class _class)
         {

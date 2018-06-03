@@ -90,6 +90,11 @@ namespace StudentManagement.ViewModels.ReportsFlow
                     ScoreFinal = StudentInfo.Score.ScoreFinal;
                     ScoreAvg = StudentInfo.Score.ScoreAverage;
                 }
+
+                if (parameters.ContainsKey(ParamKey.IsStudent.ToString()))
+                {
+                    IsEditMode = false;
+                }
             }
         }
 

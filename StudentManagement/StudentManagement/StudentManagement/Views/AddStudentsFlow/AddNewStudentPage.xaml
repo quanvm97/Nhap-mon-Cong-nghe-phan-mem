@@ -7,23 +7,24 @@
              x:Class="StudentManagement.Views.AddStudentsFlow.AddNewStudentPage" 
              Title="{Binding PageTitle}">
     <ContentPage.Content>
-        <Grid Padding="20"
+        <ScrollView>
+            <Grid Padding="20"
               RowSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Label Text="{Binding PageTitle}" 
+                <Label Text="{Binding PageTitle}" 
                    TextColor="{StaticResource Grade10ClassNameColor}"
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
@@ -33,26 +34,26 @@
                    Grid.ColumnSpan="2"
                    Margin="0,20,0,30"/>
 
-            <!--Họ và tên-->
-            <Label Text="{StaticResource PersonIcon}"
+                <!--Họ và tên-->
+                <Label Text="{StaticResource PersonIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
                    Grid.Row="1"
                    Grid.Column="0"/>
-            <Entry 
+                <Entry 
                 Text="{Binding FullName}"
                 Placeholder="Họ và tên"
                 FontSize="{StaticResource MediumFontSize}"
                 Grid.Row="1"
                 Grid.Column="1"/>
 
-            <!--Ngày sinh-->
-            <Label Text="{StaticResource CalendarIcon}"
+                <!--Ngày sinh-->
+                <Label Text="{StaticResource CalendarIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
                    Grid.Row="2"
                    Grid.Column="0"/>
-            <controls:CustomDatePicker 
+                <controls:CustomDatePicker 
                 Border="Normal"
                 Placeholder="Ngày sinh"
                 HasPlaceholder="True"
@@ -61,32 +62,32 @@
                 Grid.Column="1"
                 Date="{Binding DoB}"/>
 
-            <!--Giới tính-->
-            <Label Text="{StaticResource GenderIcon}"
+                <!--Giới tính-->
+                <Label Text="{StaticResource GenderIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
                    Grid.Row="3"
                    Grid.Column="0"/>
-            <controls:CustomPicker
+                <controls:CustomPicker
                 Border="Normal"
                 FontSize="{StaticResource MediumFontSize}"
                 Title="Giới tính"
                 Grid.Row="3"
                 Grid.Column="1"
                 SelectedItem="{Binding Gender}">
-                <controls:CustomPicker.Items>
-                    <x:String>Nam</x:String>
-                    <x:String>Nữ</x:String>
-                </controls:CustomPicker.Items>
-            </controls:CustomPicker>
+                    <controls:CustomPicker.Items>
+                        <x:String>Nam</x:String>
+                        <x:String>Nữ</x:String>
+                    </controls:CustomPicker.Items>
+                </controls:CustomPicker>
 
-            <!--Email-->
-            <Label Text="{StaticResource EmailIcon}"
+                <!--Email-->
+                <Label Text="{StaticResource EmailIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
                    Grid.Row="4"
                    Grid.Column="0"/>
-            <Entry 
+                <Entry 
                 Text="{Binding Email}"
                 Placeholder="Email"
                 FontSize="{StaticResource MediumFontSize}"
@@ -94,26 +95,27 @@
                 Grid.Column="1"
                 Keyboard="Email"/>
 
-            <!--Địa chỉ-->
-            <Label Text="{StaticResource LocationIcon}"
+                <!--Địa chỉ-->
+                <Label Text="{StaticResource LocationIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
                    Grid.Row="5"
                    Grid.Column="0"/>
-            <Entry 
+                <Entry 
                 Text="{Binding Address}"
                 Placeholder="Địa chỉ"
                 FontSize="{StaticResource MediumFontSize}"
                 Grid.Row="5"
                 Grid.Column="1"/>
 
-            <!--Continue Button-->
-            <Button Text="{Binding ButtonName}"
+                <!--Continue Button-->
+                <Button Text="{Binding ButtonName}"
                     Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     VerticalOptions="End"
                     Command="{Binding ContinueCommand}"/>
-        </Grid>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

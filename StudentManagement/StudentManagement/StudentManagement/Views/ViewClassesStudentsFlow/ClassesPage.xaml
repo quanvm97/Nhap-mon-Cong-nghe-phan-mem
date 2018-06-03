@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.ClassesPage"
              xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
              mvvm:ViewModelLocator.AutowireViewModel="True"
              Title="Danh sách">
     <ContentPage.ToolbarItems>
@@ -12,7 +13,43 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10"
+                     Spacing="10">
+            <!--Search Box-->
+            <Frame CornerRadius="10"
+                   BackgroundColor="White"
+                   Padding="10,0"
+                   IsVisible="{Binding ShowSearchBox}">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CustomEntry
+                        Text="{Binding SearchText}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Border="None"
+                        Placeholder="Nhập tên lớp"
+                        HorizontalOptions="FillAndExpand" />
+                    <Grid Padding="5">
+                        <Image Source="ic_filter.png"
+                               WidthRequest="15"
+                               HeightRequest="15"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <BoxView WidthRequest="0.5"
+                             VerticalOptions="FillAndExpand"
+                             Color="Gray"/>
+                    <Grid Padding="5">
+                        <Label Text="{StaticResource SearchIcon}"
+                               TextColor="Purple"
+                               Style="{StaticResource MediumLabelIconStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!--List Classes-->
             <ListView x:Name="ListViewClasses"
                       ItemsSource="{Binding Classes}"
                       SeparatorVisibility="None"

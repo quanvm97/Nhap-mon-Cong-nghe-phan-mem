@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace StudentManagement.Views
+namespace StudentManagement.Views.CommonPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        public LoginPage()
+        public SettingsPage()
         {
             InitializeComponent();
         }

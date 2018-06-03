@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using StudentManagement.Helpers;
+using StudentManagement.ViewModels.ViewClassesStudentsFlow;
 using System;
 using System.Threading.Tasks;
 
@@ -73,14 +74,14 @@ namespace StudentManagement.Views.Popups
                 _isCorrectPassword = false;
                 _isDisappeared = true;
                 _isFinishConfirm = true;
-                // ReturnResult();
+                ReturnResult();
             }
         }
 
         private void ReturnResult()
         {
             if (!_isDisappeared) Navigation.PopPopupAsync();
-            //DetailStudentPageViewModel.Instance.OnReceiveConfirmPasswordResult(_isCorrectPassword);
+            StudentDetailPageViewModel.Instance.OnReceiveConfirmPasswordResult(_isCorrectPassword);
         }
     }
 }

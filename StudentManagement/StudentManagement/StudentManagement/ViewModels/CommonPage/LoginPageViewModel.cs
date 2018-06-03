@@ -11,7 +11,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace StudentManagement.ViewModels
+namespace StudentManagement.ViewModels.CommonPage
 {
     public class LoginPageViewModel : ViewModelBase
     {

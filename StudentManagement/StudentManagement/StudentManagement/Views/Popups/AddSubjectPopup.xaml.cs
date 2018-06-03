@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
+﻿using Rg.Plugins.Popup.Extensions;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
-using StudentManagement.ViewModels;
+using StudentManagement.ViewModels.CommonPage;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
 namespace StudentManagement.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddSubjectPopup 
+    public partial class AddSubjectPopup
     {
         private ISQLiteHelper _db;
 
@@ -55,9 +55,9 @@ namespace StudentManagement.Views.Popups
                 {
                     // Get max id
                     var subjects = _db.GetList<Subject>(s => s.Id > 0);
-                    int idMax = subjects.Select(s => s.Id).Concat(new[] {0}).Max();
+                    int idMax = subjects.Select(s => s.Id).Concat(new[] { 0 }).Max();
                     // Insert new subject
-                    var newSubject = new Subject{ Id=++idMax, Name = EntrySubjectName.Text.Trim() };
+                    var newSubject = new Subject { Id = ++idMax, Name = EntrySubjectName.Text.Trim() };
                     _db.Insert(newSubject);
                     LabelWrong.IsVisible = false;
                     await Task.Delay(400);

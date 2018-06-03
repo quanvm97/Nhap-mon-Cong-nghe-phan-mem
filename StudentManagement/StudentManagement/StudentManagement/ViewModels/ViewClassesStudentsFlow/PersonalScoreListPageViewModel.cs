@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System.Collections.ObjectModel;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
-    public class PersonalScoreListPageViewModel: ViewModelBase
+    public class PersonalScoreListPageViewModel : ViewModelBase
     {
         private int _semester;
         private Student _student;
@@ -114,6 +109,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         #endregion
 
         #region Methods
+
         public void ScoreItemTapped(Subject subject)
         {
             if (_semester != 1 && _semester != 2)
@@ -124,8 +120,10 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 { ParamKey.StudentInfo.ToString(), _student }
             };
-            //NavigationService.NavigateAsync(PageManager.StudentScorePage, navParam);
+
+            NavigationService.NavigateAsync("StudentScorePage", navParam);
         }
+
         #endregion
     }
 }

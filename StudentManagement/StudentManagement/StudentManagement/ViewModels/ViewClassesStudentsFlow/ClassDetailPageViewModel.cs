@@ -2,9 +2,11 @@
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System;
 using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
@@ -19,13 +21,17 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
             AcceptCommand = new DelegateCommand(AcceptExecute);
 
-            GetClassInfo();
+            user = Database.GetUser();
+
+            if (user.Role.Equals(RoleManager.TeacherRole))
+                GetClassInfo();
 
 
         }
 
         #region private properties
 
+        private User user;
         private string _className;
         private int _numberOfStudent;
         private int _numberOfBoy;
@@ -118,7 +124,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
             IsClassAcceptStudent = false;
             IsClassInfo = true;
-            PageTitle = "Thông tin";
+            PageTitle = "Thông tin lớp";
 
             myclass.CountStudent(Database);
 
@@ -161,17 +167,17 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             Dialog.DisplayAlertAsync("Thông báo", "Tiếp nhận học sinh thành công", "OK");
 
             // Show info student after adding
-            //string uri = PageManager.MultiplePage(new[]
-            //{
-            //    PageManager.HomePage, PageManager.NavigationPage,
-            //    PageManager.ListClassesPage, PageManager.DetailStudentPage
-            //});
-            //var navParam = new NavigationParameters
-            //{
-            //    { ParamKey.StudentInfo.ToString(), _student },
-            //    { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.AddNewStudent }
-            //};
-            //NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
+            string uri = "PrincipalRoleMainPage";
+
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), _student },
+                { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.AddNewStudent }
+            };
+
+            //NavigationService.NavigateAsync(uri, navParam);
+            NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"), navParam);
+
         }
 
         private void SwitchPageMode(DetailClassPageType type)

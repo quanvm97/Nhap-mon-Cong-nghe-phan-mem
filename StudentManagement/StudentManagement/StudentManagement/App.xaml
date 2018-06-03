@@ -18,9 +18,9 @@
       <Color x:Key="Grade10ClassNameColor">#076f30</Color>
       <Color x:Key="Grade11ClassNameColor">#1f4788</Color>
       <Color x:Key="Grade12ClassNameColor">#6e366f</Color>
-      <Color x:Key="MenuBackgroundHeaderColor">#763568</Color>
-      <Color x:Key="MenuHeaderJobColor">#e1c0da</Color>
-      <Color x:Key="MenuBackgroundFeaturesColor">#4d8fac</Color>
+      <Color x:Key="MenuBackgroundHeaderColor">#9EE4B6</Color>
+      <Color x:Key="MenuHeaderJobColor">#FCF4FB</Color>
+      <Color x:Key="MenuBackgroundFeaturesColor">#DFFAEA</Color>
       <!--#endregion-->
 
       <!--#region Character code-->
@@ -42,6 +42,7 @@
       <x:String x:Key="PersonAddIcon">&#xF39F;</x:String>
       <x:String x:Key="PersonIcon">&#xF3A0;</x:String>
       <x:String x:Key="SearchIcon">&#xF4A4;</x:String>
+      <x:String x:Key="FilterIcon">&#xF0B0;</x:String>
       <x:String x:Key="WomanIcon">&#xF25D;</x:String>
       <x:String x:Key="CircleNoticeIcon">&#xF35B;</x:String>
       <x:String x:Key="CircleCheckIcon">&#xF120;</x:String>
@@ -93,6 +94,10 @@
         <OnIdiom.Phone>20</OnIdiom.Phone>
         <OnIdiom.Tablet>35</OnIdiom.Tablet>
       </OnIdiom>
+      <OnIdiom x:Key="IconSettingsSize" x:TypeArguments="x:Double">
+        <OnIdiom.Phone>25</OnIdiom.Phone>
+        <OnIdiom.Tablet>40</OnIdiom.Tablet>
+      </OnIdiom>
       <OnIdiom x:Key="LargeIconSize" x:TypeArguments="x:Double">
         <OnIdiom.Phone>30</OnIdiom.Phone>
         <OnIdiom.Tablet>50</OnIdiom.Tablet>
@@ -113,7 +118,7 @@
         <OnIdiom.Tablet>20</OnIdiom.Tablet>
       </OnIdiom>
       <x:Double x:Key="MenuFeaturesColumnSpacing">10</x:Double>
-      <GridLength x:Key="MenuFeaturesIconWidth">30</GridLength>
+      <GridLength x:Key="MenuFeaturesIconWidth">50</GridLength>
       <!--#endregion-->
 
       <!--  Font ionicons  -->
@@ -130,16 +135,17 @@
         <Setter Property="VerticalTextAlignment" Value="Center"/>
       </Style>
       <Style x:Key="MenuFeaturesIconStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="{StaticResource MediumIconSize}"/>
+        <Setter Property="FontSize" Value="{StaticResource IconSettingsSize}"/>
         <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="#9D9D9D"/>
+        <Setter Property="Margin" Value="15,0,10,0"/>
       </Style>
       <Style x:Key="MenuFeaturesLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="#9D9D9D"/>
       </Style>
       <Style x:Key="ListSmallItemIconStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>

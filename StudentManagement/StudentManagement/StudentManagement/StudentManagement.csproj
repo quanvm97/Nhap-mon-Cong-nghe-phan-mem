@@ -86,15 +86,21 @@
     <Compile Include="ViewModels\AViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BViewModel.cs" />
+    <Compile Include="ViewModels\CommonPage\ChangeClassesInfoPageViewModel.cs" />
+    <Compile Include="ViewModels\CommonPage\ChangeRegulationsPageViewModel.cs" />
+    <Compile Include="ViewModels\CommonPage\ChangeSubjectsInfoPageViewModel.cs" />
+    <Compile Include="ViewModels\CommonPage\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\CViewModel.cs" />
-    <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\CommonPage\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\PrincipalRoleMainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageTabbed\StudentRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\TeacherRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySubjectPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportHomePageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\StudentScorePageViewModel.cs" />
+    <Compile Include="ViewModels\ReportsFlow\StudentScoreTabViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\ClassesPageViewModel.cs" />
     <Compile Include="ViewModels\ViewClassesStudentsFlow\HomePageViewModel.cs" />
@@ -117,8 +123,20 @@
     <Compile Include="Views\C.xaml.cs">
       <DependentUpon>C.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginPage.xaml.cs">
+    <Compile Include="Views\CommonPage\ChangeClassesInfoPage.xaml.cs">
+      <DependentUpon>ChangeClassesInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonPage\ChangeRegulationsPage.xaml.cs">
+      <DependentUpon>ChangeRegulationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonPage\ChangeSubjectsInfoPage.xaml.cs">
+      <DependentUpon>ChangeSubjectsInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonPage\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommonPage\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -132,8 +150,20 @@
     <Compile Include="Views\MainPageTabbed\TeacherRoleMainPage.xaml.cs">
       <DependentUpon>TeacherRoleMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Popups\AddClassPopup.xaml.cs">
+      <DependentUpon>AddClassPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\AddSubjectPopup.xaml.cs">
+      <DependentUpon>AddSubjectPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Popups\ConfirmPasswordPopup.xaml.cs">
       <DependentUpon>ConfirmPasswordPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\EditClassPopup.xaml.cs">
+      <DependentUpon>EditClassPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\EditSubjectPopup.xaml.cs">
+      <DependentUpon>EditSubjectPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Popups\LoadingPopup.xaml.cs">
       <DependentUpon>LoadingPopup.xaml</DependentUpon>
@@ -149,6 +179,9 @@
     </Compile>
     <Compile Include="Views\ReportsFlow\StudentScorePage.xaml.cs">
       <DependentUpon>StudentScorePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportsFlow\StudentScoreTab.xaml.cs">
+      <DependentUpon>StudentScoreTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewClassesStudentsFlow\ClassDetailPage.xaml.cs">
       <DependentUpon>ClassDetailPage.xaml</DependentUpon>
@@ -341,7 +374,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\LoginPage.xaml">
+    <EmbeddedResource Include="Views\CommonPage\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -361,6 +394,50 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPageTabbed\StudentRoleMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportsFlow\StudentScoreTab.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CommonPage\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CommonPage\ChangeRegulationsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CommonPage\ChangeClassesInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommonPage\ChangeSubjectsInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Popups\AddClassPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Popups\AddSubjectPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Popups\EditClassPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Popups\EditSubjectPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

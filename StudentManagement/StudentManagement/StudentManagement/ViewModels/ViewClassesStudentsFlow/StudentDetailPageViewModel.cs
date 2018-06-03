@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
+using System;
+using System.Windows.Input;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -19,12 +17,42 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         public StudentDetailPageViewModel(INavigationService navigationService = null, IPageDialogService dialogService = null, ISQLiteHelper sqLiteHelper = null) :
             base(navigationService, dialogService, sqLiteHelper)
         {
+            //ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
+
+            user = Database.GetUser();
+
+            if (user.Role.Equals(RoleManager.StudentRole))
+                GetStudentDetail();
+
+            PageTitle = "Thông tin";
+
+            Instance = this;
+
+            // Commands
+            ViewClassInfoCommand = new DelegateCommand(ViewClassInfoExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
+            RemoveStudentCommand = new DelegateCommand(RemoveStudentExecute);
+            EditStudentCommand = new DelegateCommand(EditStudentExecute);
         }
+
+        private void GetStudentDetail()
+        {
+            var student = Database.Get<Student>(s => s.Id == user.Id);
+            SetStudentInfo(student);
+            IsStudentInfo = false;
+            PageTitle = "Thông tin học sinh";
+        }
+
+        #region Instance
+
+        public static StudentDetailPageViewModel Instance;
+
+        #endregion
 
         #region private properties
 
         private Student _student;
+        private User user;
         private string _className;
         private string _fullName;
         private string _doB;
@@ -119,6 +147,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
                 {
                     IsStudentInfo = true;
+                    PageTitle = (user.Role.Equals(RoleManager.PrincipalRole)) ? "Thông tin" : "Thông tin học sinh";
                     SetStudentInfo((Student)parameters[ParamKey.StudentInfo.ToString()]);
                 }
                 if (parameters.ContainsKey(ParamKey.DetailStudentPageType.ToString()))
@@ -151,7 +180,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo }
             };
-            //NavigationService.NavigateAsync(PageManager.DetailClassPage, navParam);
+            NavigationService.NavigateAsync("ClassDetailPage", navParam);
         }
 
         private async void ViewScoreBoardExecute()
@@ -198,22 +227,19 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             if (isAccept)
             {
                 var user = Database.GetUser();
-                //ConfirmPasswordPopup.Instance.Show(user.Name);
+                ConfirmPasswordPopup.Instance.Show(user.Name);
             }
         }
 
         public async void OnReceiveConfirmPasswordResult(bool isCorrectPassword)
         {
-            //if (isCorrectPassword)
-            //{
-            //    Database.Delete(_student);
-            //    await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
-            //    string uri = PageManager.MultiplePage(new[]
-            //    {
-            //        PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
-            //    });
-            //    await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
-            //}
+            if (isCorrectPassword)
+            {
+                Database.Delete(_student);
+                await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
+                string uri = "PrincipalRoleMainPage/ClassesPage";
+                await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"));
+            }
 
             //await Dialog.DisplayAlertAsync("Thông báo", "Mật khẩu không chính xác hoặc người dùng không tồn tại. Vui lòng thử lại", "OK");
         }

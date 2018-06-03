@@ -5,6 +5,8 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=StudentManagement"
              xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
+             xmlns:reportsFlow="clr-namespace:StudentManagement.Views.ReportsFlow;assembly=StudentManagement"
+             xmlns:commonPage="clr-namespace:StudentManagement.Views.CommonPage;assembly=StudentManagement"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding PageTitle}">
 
@@ -25,11 +27,15 @@
     <NavigationPage Title="Class Reports"
                     Icon="ic_Report.png">
         <x:Arguments>
-            <viewClassesStudentsFlow:PersonalScoreListPage/>
+            <reportsFlow:StudentScoreTab/>
         </x:Arguments>
     </NavigationPage>
 
-    <ContentPage Title="Settings"
-                 Icon="ic_Settings.png"/>
+    <NavigationPage Title="Settings"
+                    Icon="ic_Settings.png">
+        <x:Arguments>
+            <commonPage:SettingsPage/>
+        </x:Arguments>
+    </NavigationPage>
 
 </xamarinForms:BottomBarPage>

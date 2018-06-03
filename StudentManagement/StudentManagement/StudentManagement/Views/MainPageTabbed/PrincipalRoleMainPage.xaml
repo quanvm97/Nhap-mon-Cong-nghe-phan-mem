@@ -7,6 +7,7 @@
                             xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
                             xmlns:addStudentsFlow="clr-namespace:StudentManagement.Views.AddStudentsFlow;assembly=StudentManagement"
                             xmlns:reportsFlow="clr-namespace:StudentManagement.Views.ReportsFlow;assembly=StudentManagement"
+                            xmlns:commonPage="clr-namespace:StudentManagement.Views.CommonPage;assembly=StudentManagement"
                             prism:ViewModelLocator.AutowireViewModel="True"
                             Title="{Binding PageTitle}">
 
@@ -27,7 +28,11 @@
         </x:Arguments>
     </NavigationPage>
 
-    <ContentPage Title="Settings"
-                 Icon="ic_Settings.png"/>
+    <NavigationPage Title="Settings"
+                    Icon="ic_Settings.png">
+        <x:Arguments>
+            <commonPage:SettingsPage/>
+        </x:Arguments>
+    </NavigationPage>
 
 </xamarinForms:BottomBarPage>

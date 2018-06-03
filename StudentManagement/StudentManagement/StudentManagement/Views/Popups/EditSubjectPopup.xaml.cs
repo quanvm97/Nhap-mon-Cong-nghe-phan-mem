@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
+﻿using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
-using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
-using StudentManagement.ViewModels;
+using StudentManagement.ViewModels.CommonPage;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
 namespace StudentManagement.Views.Popups
@@ -63,7 +62,7 @@ namespace StudentManagement.Views.Popups
                     await Task.Delay(400);
                     ReturnResult();
                 }
-            } 
+            }
         }
 
         #endregion

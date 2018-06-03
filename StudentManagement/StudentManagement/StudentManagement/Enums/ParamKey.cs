@@ -11,6 +11,7 @@
         NavigateBack,
         Semester,
         PageTitle,
-        NeedReload
+        NeedReload,
+        IsStudent
     }
 }

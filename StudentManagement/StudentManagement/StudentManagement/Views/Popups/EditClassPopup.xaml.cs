@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
+﻿using Rg.Plugins.Popup.Extensions;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
-using StudentManagement.ViewModels;
-using Xamarin.Forms;
+using StudentManagement.ViewModels.CommonPage;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
 namespace StudentManagement.Views.Popups

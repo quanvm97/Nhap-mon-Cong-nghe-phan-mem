@@ -3,11 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentManagement.Views.ViewClassesStudentsFlow.StudentsPage"
              xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
              mvvm:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search"
+                     Icon="ic_search_white.png"
+                     Command="{Binding SearchToolbarItemsCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <!--Class name--><!--
+            <!--Class name-->
+            <!--
             <Label Text="Danh sách lớp"
                    HorizontalOptions="Center"/>
             <Label Text="{Binding ClassName}" 
@@ -15,6 +24,32 @@
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
                    HorizontalOptions="Center"/>-->
+
+            <!--Search Box-->
+            <Frame CornerRadius="10"
+                   BackgroundColor="White"
+                   Padding="10,0"
+                   IsVisible="{Binding ShowSearchBox}">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CustomEntry
+                        Text="{Binding SearchText}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Border="None"
+                        Placeholder="Nhập tên học sinh"
+                        HorizontalOptions="FillAndExpand" />
+                    <BoxView WidthRequest="0.5"
+                             VerticalOptions="FillAndExpand"
+                             Color="Gray"/>
+                    <Grid Padding="5">
+                        <Label Text="{StaticResource SearchIcon}"
+                               TextColor="Purple"
+                               Style="{StaticResource MediumLabelIconStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+            </Frame>
 
             <!--List Student-->
             <ListView x:Name="ListViewStudents"
