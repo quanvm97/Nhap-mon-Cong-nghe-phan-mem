@@ -6,6 +6,7 @@
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=StudentManagement"
              xmlns:viewClassesStudentsFlow="clr-namespace:StudentManagement.Views.ViewClassesStudentsFlow;assembly=StudentManagement"
              xmlns:commonPage="clr-namespace:StudentManagement.Views.CommonPage;assembly=StudentManagement"
+             xmlns:addStudentsFlow="clr-namespace:StudentManagement.Views.AddStudentsFlow;assembly=StudentManagement"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding PageTitle}">
 
@@ -16,10 +17,10 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Class"
-                    Icon="ic_AddStudent.png">
+    <NavigationPage Title="Input score"
+                    Icon="ic_input_score.png">
         <x:Arguments>
-            <viewClassesStudentsFlow:StudentsPage/>
+            <addStudentsFlow:InputScorePage/>
         </x:Arguments>
     </NavigationPage>
 

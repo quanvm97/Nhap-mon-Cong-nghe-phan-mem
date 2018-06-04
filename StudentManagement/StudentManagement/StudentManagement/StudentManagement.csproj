@@ -47,6 +47,7 @@
     <Compile Include="Controls\GradientContentView.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Converters\IsTrueConverter.cs" />
     <Compile Include="Enums\AddNewStudentType.cs" />
     <Compile Include="Enums\BorderType.cs" />
     <Compile Include="Enums\DetailClassPageType.cs" />
@@ -83,6 +84,8 @@
     </Compile>
     <Compile Include="ViewModels\AddStudentsFlow\AddNewStudentPageViewModel.cs" />
     <Compile Include="ViewModels\AddStudentsFlow\ChooseClassPageViewModel.cs" />
+    <Compile Include="ViewModels\AddStudentsFlow\InputScorePageViewModel.cs" />
+    <Compile Include="ViewModels\AddStudentsFlow\SearchPageViewModel.cs" />
     <Compile Include="ViewModels\AViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BViewModel.cs" />
@@ -116,6 +119,12 @@
     </Compile>
     <Compile Include="Views\A.xaml.cs">
       <DependentUpon>A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddStudentsFlow\InputScorePage.xaml.cs">
+      <DependentUpon>InputScorePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddStudentsFlow\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\B.xaml.cs">
       <DependentUpon>B.xaml</DependentUpon>
@@ -438,6 +447,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Popups\EditSubjectPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddStudentsFlow\InputScorePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddStudentsFlow\SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -30,6 +31,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             // Commands
             SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
             SearchIconCommand = new DelegateCommand(SearchIconExecute);
+            FilterIconCommand = new DelegateCommand(FilterIconExecute);
         }
 
         #region Properties
@@ -72,19 +74,63 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #endregion
 
+        #region BackgroundColor
+
+        private Color _clickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+        public Color ClickedSearchBackgroundColor
+        {
+            get => _clickedSearchBackgroundColor;
+            set => this.SetProperty(ref _clickedSearchBackgroundColor, value);
+        }
+
+        private Color _clickedFilterBackgroundColor = Color.FromHex("#F1EFEF");
+
+        public Color ClickedFilterBackgroundColor
+        {
+            get => _clickedFilterBackgroundColor;
+            set => this.SetProperty(ref _clickedFilterBackgroundColor, value);
+        }
+
+        #endregion
+
         #region Search student
 
         // Commands
         public ICommand SearchToolbarItemsCommand { get; set; }
         public ICommand SearchIconCommand { get; set; }
+        public ICommand FilterIconCommand { get; set; }
 
         private void SearchToolbarItemsExecute()
         {
             ShowSearchBox = !ShowSearchBox;
         }
 
-        private void SearchIconExecute()
+        private async void SearchIconExecute()
         {
+
+            ClickedSearchBackgroundColor = Color.White;
+
+            await Task.Delay(200);
+
+            ClickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+            //var serchResult = Students.Where(s =>
+            //    StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+            //        .Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+            //Students = new ObservableCollection<Student>(serchResult);
+        }
+
+        private async void FilterIconExecute()
+        {
+            ClickedFilterBackgroundColor = Color.White;
+
+            await Task.Delay(200);
+
+            ClickedFilterBackgroundColor = Color.FromHex("#F1EFEF");
+
+            await NavigationService.NavigateAsync("SearchPage");
+
             //var serchResult = Students.Where(s =>
             //    StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
             //        .Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));

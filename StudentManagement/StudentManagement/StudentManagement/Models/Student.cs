@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SQLite.Net.Attributes;
+﻿using SQLite.Net.Attributes;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace StudentManagement.Models
@@ -32,13 +31,13 @@ namespace StudentManagement.Models
 
         [Ignore]
         public string GenderString => Gender == 0 ? "Nữ" : "Nam";
-        
-        [Ignore]
-        public string GenderIcon => Gender == 0 ? Ionicons.Female: Ionicons.Male;
 
         [Ignore]
-        public Color GenderColor => Gender == 0 
-            ? (Color) Application.Current.Resources["PinkColor"] 
+        public string GenderIcon => Gender == 0 ? Ionicons.Female : Ionicons.Male;
+
+        [Ignore]
+        public Color GenderColor => Gender == 0
+            ? (Color)Application.Current.Resources["PinkColor"]
             : Color.Green;
 
         [Ignore]
@@ -49,7 +48,7 @@ namespace StudentManagement.Models
         /// Get score for 1 subject in 1 semester of 1 student
         /// </summary>
         [Ignore]
-        public Score Score { get; private set; }
+        public Score Score { get; set; }
 
         /// <summary>
         /// Average Score in Semester 1

@@ -18,30 +18,40 @@
             <!--Search Box-->
             <Frame CornerRadius="10"
                    BackgroundColor="White"
-                   Padding="10,0"
+                   Padding="10,0,0,0"
                    IsVisible="{Binding ShowSearchBox}">
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0">
                     <controls:CustomEntry
                         Text="{Binding SearchText}"
                         FontSize="{StaticResource MediumFontSize}"
                         Border="None"
                         Placeholder="Nhập tên lớp"
                         HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="5">
+                    <Grid Padding="5"
+                          BackgroundColor="{Binding ClickedFilterBackgroundColor}"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+                        <!--BackgroundColor="#F1EFEF"-->
                         <Image Source="ic_filter.png"
                                WidthRequest="15"
-                               HeightRequest="15"/>
+                               HeightRequest="15"
+                               Margin="8,0"/>
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                            <TapGestureRecognizer Command="{Binding FilterIconCommand}"/>
                         </Grid.GestureRecognizers>
                     </Grid>
-                    <BoxView WidthRequest="0.5"
+                    <BoxView WidthRequest="0.75"
                              VerticalOptions="FillAndExpand"
                              Color="Gray"/>
-                    <Grid Padding="5">
+                    <Grid Padding="5"
+                          BackgroundColor="{Binding ClickedSearchBackgroundColor}"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
                         <Label Text="{StaticResource SearchIcon}"
                                TextColor="Purple"
-                               Style="{StaticResource MediumLabelIconStyle}"/>
+                               Style="{StaticResource MediumLabelIconStyle}"
+                               Margin="8,0"/>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
                         </Grid.GestureRecognizers>

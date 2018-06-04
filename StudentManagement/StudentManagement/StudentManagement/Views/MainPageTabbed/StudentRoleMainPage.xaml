@@ -11,20 +11,20 @@
              Title="{Binding PageTitle}">
 
     <NavigationPage Icon="ic_home.png"
-                    Title="Class Info">
+                    Title="Student Info">
         <x:Arguments>
             <viewClassesStudentsFlow:StudentDetailPage/>
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Class"
-                    Icon="ic_AddStudent.png">
+    <NavigationPage Title="Class List"
+                    Icon="ic_people.png">
         <x:Arguments>
             <viewClassesStudentsFlow:StudentsPage/>
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Class Reports"
+    <NavigationPage Title="Score Board"
                     Icon="ic_Report.png">
         <x:Arguments>
             <reportsFlow:StudentScoreTab/>

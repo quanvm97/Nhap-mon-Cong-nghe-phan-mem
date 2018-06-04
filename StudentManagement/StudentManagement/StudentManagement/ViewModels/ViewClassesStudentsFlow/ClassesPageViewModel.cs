@@ -8,7 +8,9 @@ using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 {
@@ -19,6 +21,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
             SearchIconCommand = new DelegateCommand(SearchIconExecute);
+            FilterIconCommand = new DelegateCommand(FilterIconExecute);
 
             var classes = sqLiteHelper.GetList<Class>(c => c.Id > 0);
             foreach (var c in classes) c.CountStudent(sqLiteHelper);
@@ -86,6 +89,26 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #endregion
 
+        #region BackgroundColor
+
+        private Color _clickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+        public Color ClickedSearchBackgroundColor
+        {
+            get => _clickedSearchBackgroundColor;
+            set => this.SetProperty(ref _clickedSearchBackgroundColor, value);
+        }
+
+        private Color _clickedFilterBackgroundColor = Color.FromHex("#F1EFEF");
+
+        public Color ClickedFilterBackgroundColor
+        {
+            get => _clickedFilterBackgroundColor;
+            set => this.SetProperty(ref _clickedFilterBackgroundColor, value);
+        }
+
+        #endregion
+
         #region Search Command
 
         public ICommand SearchToolbarItemsCommand { get; set; }
@@ -96,8 +119,29 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         }
         public ICommand SearchIconCommand { get; set; }
 
-        private void SearchIconExecute()
+        private async void SearchIconExecute()
         {
+            ClickedSearchBackgroundColor = Color.White;
+
+            await Task.Delay(200);
+
+            ClickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+            //var serchResult = Classes.Where(s => StringHelper.RemoveUnicodeCharacter(s.Name.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+            //Classes = new ObservableCollection<Class>(serchResult);
+        }
+        public ICommand FilterIconCommand { get; set; }
+
+        private async void FilterIconExecute()
+        {
+            ClickedFilterBackgroundColor = Color.White;
+
+            await Task.Delay(200);
+
+            ClickedFilterBackgroundColor = Color.FromHex("#F1EFEF");
+
+            await NavigationService.NavigateAsync("SearchPage");
+
             //var serchResult = Classes.Where(s => StringHelper.RemoveUnicodeCharacter(s.Name.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
             //Classes = new ObservableCollection<Class>(serchResult);
         }

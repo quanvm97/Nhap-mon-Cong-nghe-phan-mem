@@ -1,6 +1,6 @@
 ﻿namespace StudentManagement.Helpers
 {
-    public class StringHelper
+    public static class StringHelper
     {
 
         private static string[] _arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
@@ -27,6 +27,11 @@
                 text = text.Replace(_arr1[i].ToUpper(), _arr2[i].ToUpper());
             }
             return text;
+        }
+
+        public static bool StringToBool(this string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.ToLower().Equals("true");
         }
     }
 }
