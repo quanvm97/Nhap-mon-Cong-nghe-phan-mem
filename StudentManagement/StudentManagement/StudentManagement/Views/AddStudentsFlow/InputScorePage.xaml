@@ -4,25 +4,15 @@
              x:Class="StudentManagement.Views.AddStudentsFlow.InputScorePage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
-             xmlns:converters="clr-namespace:StudentManagement.Converters;assembly=StudentManagement"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding PageTitle}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:IsTrueConverter x:Key="IsValidScoreConverter"
-                                        IsReverse="True"/>
-            <converters:IsTrueConverter x:Key="IsInValidScoreConverter"
-                                        IsReverse="False"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <!--<ScrollView>-->
+
             <Grid Padding="15,15,15,0" 
                       RowSpacing="0"
                       ColumnSpacing="5">
@@ -175,17 +165,6 @@
                            Grid.Row="8"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"/>
-                <!--<Label Text="{Binding StudentInfo.Score.ScoreAverage, StringFormat='{0:0.0}'}"
-                           TextColor="Blue"
-                           FontAttributes="Bold"
-                           FontSize="{StaticResource XLargeFontSize}"
-                           HorizontalTextAlignment="Center"
-                           HorizontalOptions="CenterAndExpand"
-                           Grid.Row="9"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="20,10,20,0"
-                       IsVisible="{Binding IsValidScore,Converter={StaticResource IsValidScoreConverter}}"/>-->
                 <Label Text="{Binding ScoreAverage}"
                        TextColor="Blue"
                        FontAttributes="Bold"
@@ -196,11 +175,7 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        Margin="20,10,20,0"/>
-                <!--IsVisible="{Binding IsValidScore,Converter={StaticResource IsInValidScoreConverter}}"/>-->
-
-                <!--Text="{Binding ScoreAvg, StringFormat='{0:0.0}'}"-->
             </Grid>
-            <!--</ScrollView>-->
 
             <!--Save-->
             <Button Text="Save"

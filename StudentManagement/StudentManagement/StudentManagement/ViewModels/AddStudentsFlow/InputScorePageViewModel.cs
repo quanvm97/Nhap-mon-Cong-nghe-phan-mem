@@ -1,7 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
-using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
@@ -53,9 +52,6 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
 
         private int _semester;
         private Subject _subjectSelected;
-        private ScoreBoardPageType _pageType;
-        private Class _class;
-        private bool _isInitialized;
 
         #endregion
 
@@ -159,8 +155,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                     ScoreFinal = StudentInfo.Score.ScoreFinal;
 
                     ScoreAverage = StudentInfo.Score.ScoreAverage.ToString("0.00");
-                    //ScoreAverage = String.Format(CultureInfo.InvariantCulture,
-                    //    "{0:0.0}", ScoreAverage);
+
                 }
                 else
                 {
@@ -191,16 +186,6 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
         #endregion
 
         #region GetAverageScore
-
-        private bool _isValidScore = false;
-        public bool IsValidScore
-        {
-            get => _isValidScore;
-            set
-            {
-                SetProperty(ref _isValidScore, value);
-            }
-        }
 
         private float _score15M;
         public float Score15M
@@ -247,15 +232,6 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
 
         private void GetAverageScore()
         {
-            //if (StudentInfo.Score == null || StudentInfo.Score.Score15M == 0 || StudentInfo.Score.Score45M == 0 ||
-            //    StudentInfo.Score.ScoreFinal == 0)
-            //{
-            //    IsValidScore = false;
-            //    return;
-            //}
-
-            //IsValidScore = true;
-
             if (StudentInfo.Score == null)
             {
                 ScoreAverage = "-";
@@ -264,8 +240,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
 
             float scoreAverage = (Score15M + Score45M * 2 + ScoreFinal * 3) / 6;
             ScoreAverage = scoreAverage.ToString("0.00");
-            //ScoreAverage = String.Format(CultureInfo.InvariantCulture,
-            //    "{0:0.0}", ScoreAverage);
+
         }
 
         #endregion
@@ -306,10 +281,7 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                 _subjectSelected = Subjects.FirstOrDefault(s => s.Name.Equals(value));
 
                 GetStudentInfo();
-                //if (_isInitialized)
-                //{
-                //    //LoadListScoreBoard();
-                //}
+
             }
         }
 
@@ -369,25 +341,6 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
 
         #endregion
 
-        //Input score to student
-
-        #region GetInfoScoreStudent
-
-        private void GetInfoScoreStudent()
-        {
-            var students = new ObservableCollection<Student>();
-            foreach (var student in Students)
-            {
-                student.GetScore(Database, _subjectSelected.Id, _semester);
-                students.Add(student);
-            }
-            Students = students;
-            //_isInitialized = true;
-        }
-
-        #endregion
-
-
         #endregion
 
 
@@ -418,10 +371,6 @@ namespace StudentManagement.ViewModels.AddStudentsFlow
                 await Task.Delay(1000);
                 LoadingPopup.Instance.HideLoading();
                 await Dialog.DisplayAlertAsync("Thông báo", "Lưu điểm học sinh thành công", "OK");
-                //await NavigationService.GoBackAsync(new NavigationParameters
-                //{
-                //    { ParamKey.NeedReload.ToString(), true }
-                //});
 
                 StudentNameSelected = null;
 

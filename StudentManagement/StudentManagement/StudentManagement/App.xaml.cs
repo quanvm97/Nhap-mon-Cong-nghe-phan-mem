@@ -37,11 +37,7 @@ namespace StudentManagement
             InitMockData();
             InitializeComponent();
 
-            //await NavigationService.NavigateAsync("MainPage");
             StartApp();
-
-            //await Navigator.PushModal("MainPage");
-            //await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes()
@@ -55,7 +51,6 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ChangeRegulationsPage>();
             Container.RegisterTypeForNavigation<ChangeClassesInfoPage>();
             Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>();
-            //Container.RegisterTypeForNavigation<MainPage>();
 
             //MainPagetabbed
             Container.RegisterTypeForNavigation<PrincipalRoleMainPage>();
@@ -82,11 +77,6 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ReportBySemesterPage>();
             Container.RegisterTypeForNavigation<ReportBySubjectPage>();
             Container.RegisterTypeForNavigation<StudentScorePage>();
-
-
-            //Container.RegisterTypeForNavigation<A>();
-            //Container.RegisterTypeForNavigation<B>();
-            //Container.RegisterTypeForNavigation<C>();
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
@@ -148,39 +138,5 @@ namespace StudentManagement
             await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"), navParam);
         }
 
-        //private async void StartApp()
-        //{
-        //    var user = _sqLiteHelper.GetUser();
-
-        //    string uri = PageManager.MultiplePage(new[]
-        //    {
-        //        PageManager.HomePage, PageManager.NavigationPage,
-        //    });
-        //    var navParam = new NavigationParameters();
-
-        //    if (user == null)
-        //        uri = PageManager.LoginPage; 
-        //    // If PrincipalRole
-        //    else if (user.Role.Equals(RoleManager.PrincipalRole))
-        //        uri += "/" + PageManager.ListClassesPage;
-        //    // If TeacherRole
-        //    else if (user.Role.Equals(RoleManager.TeacherRole))
-        //    {
-        //        uri += "/" + PageManager.DetailClassPage;
-        //        var classInfo = _sqLiteHelper.Get<Class>(c => c.Id == user.ClassId);
-        //        classInfo.CountStudent(_sqLiteHelper);
-        //        navParam.Add(ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo);
-        //        navParam.Add(ParamKey.ClassInfo.ToString(), classInfo);
-        //    }
-        //    // If StudentRole
-        //    else
-        //    {
-        //        uri += "/" + PageManager.DetailStudentPage;
-        //        navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
-        //        navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
-        //    }
-
-        //    await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"), navParam);
-        //}
     }
 }

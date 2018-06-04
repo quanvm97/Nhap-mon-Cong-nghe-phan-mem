@@ -86,19 +86,15 @@
     <Compile Include="ViewModels\AddStudentsFlow\ChooseClassPageViewModel.cs" />
     <Compile Include="ViewModels\AddStudentsFlow\InputScorePageViewModel.cs" />
     <Compile Include="ViewModels\AddStudentsFlow\SearchPageViewModel.cs" />
-    <Compile Include="ViewModels\AViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
-    <Compile Include="ViewModels\BViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeClassesInfoPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeRegulationsPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeSubjectsInfoPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\SettingsPageViewModel.cs" />
-    <Compile Include="ViewModels\CViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\PrincipalRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\StudentRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\TeacherRoleMainPageViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportBySubjectPageViewModel.cs" />
     <Compile Include="ViewModels\ReportsFlow\ReportHomePageViewModel.cs" />
@@ -117,20 +113,11 @@
     <Compile Include="Views\AddStudentsFlow\ChooseClassPage.xaml.cs">
       <DependentUpon>ChooseClassPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\A.xaml.cs">
-      <DependentUpon>A.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddStudentsFlow\InputScorePage.xaml.cs">
       <DependentUpon>InputScorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddStudentsFlow\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\B.xaml.cs">
-      <DependentUpon>B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\C.xaml.cs">
-      <DependentUpon>C.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CommonPage\ChangeClassesInfoPage.xaml.cs">
       <DependentUpon>ChangeClassesInfoPage.xaml</DependentUpon>
@@ -146,9 +133,6 @@
     </Compile>
     <Compile Include="Views\CommonPage\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPageTabbed\PrincipalRoleMainPage.xaml.cs">
       <DependentUpon>PrincipalRoleMainPage.xaml</DependentUpon>
@@ -274,12 +258,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\ViewClassesStudentsFlow\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -323,22 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddStudentsFlow\ChooseClassPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\C.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
