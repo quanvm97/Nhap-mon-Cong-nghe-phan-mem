@@ -3712,7 +3712,7 @@ namespace StudentManagement.Services.LocalDatabase
                     Gender = 1,
                     Address = "P.Tăng Nhơn Phú A, Q.9, TP HCM",
                     DoB = DateTime.ParseExact("06/09/1996", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Email = "baonv@gmail.com"
+                    Email = "ngocpv@gmail.com"
                 },
                 new Student()
                 {
