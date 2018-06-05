@@ -141,8 +141,9 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             var navParam = new NavigationParameters
             {
-                { ParamKey.ClassInfo.ToString(), _class },
-                { ParamKey.StudentInfo.ToString(), _student }
+                {ParamKey.ClassInfo.ToString(), _class},
+                {ParamKey.StudentInfo.ToString(), _student},
+                {ParamKey.ShowOneClassOnly.ToString(), true}
             };
             NavigationService.NavigateAsync("StudentsPage", navParam);
         }

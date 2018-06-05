@@ -12,6 +12,8 @@
         Semester,
         PageTitle,
         NeedReload,
-        IsStudent
+        IsStudent,
+
+        ShowOneClassOnly
     }
 }

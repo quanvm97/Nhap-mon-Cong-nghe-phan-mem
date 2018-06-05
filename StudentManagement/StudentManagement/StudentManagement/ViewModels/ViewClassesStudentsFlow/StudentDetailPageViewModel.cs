@@ -226,8 +226,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             bool isAccept = await Dialog.DisplayAlertAsync("Xóa học sinh", "Bạn có chắc muốn xóa học sinh này?", "Có", "Không");
             if (isAccept)
             {
-                var user = Database.GetUser();
-                ConfirmPasswordPopup.Instance.Show(user.Name);
+                var users = Database.GetUser();
+                ConfirmPasswordPopup.Instance.Show(users.Name);
             }
         }
 
@@ -237,7 +237,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 Database.Delete(_student);
                 await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
-                string uri = "PrincipalRoleMainPage/ClassesPage";
+                string uri = "PrincipalRoleMainPage";
                 await NavigationService.NavigateAsync(new Uri($"https://quanvm.com/{uri}"));
             }
 

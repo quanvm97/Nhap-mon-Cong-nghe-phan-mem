@@ -170,11 +170,17 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
 
         private string _title;
-
         public string Title
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        private bool _showOneClassOnly = false;
+        public bool ShowOneClassOnly
+        {
+            get => _showOneClassOnly;
+            set => SetProperty(ref _showOneClassOnly, value);
         }
 
         #endregion
@@ -189,6 +195,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             {
                 if (parameters.ContainsKey(ParamKey.ClassInfo.ToString()))
                 {
+                    ShowOneClassOnly = (bool)parameters[ParamKey.ShowOneClassOnly.ToString()];
                     SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
                     return;
                 }
@@ -218,7 +225,10 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 {
                     student.GetAvgScore(Database);
                 }
-                ListStudents = Students = new ObservableCollection<Student>(students);
+
+                if (!ShowOneClassOnly)
+                    ListStudents = Students = new ObservableCollection<Student>(students);
+
             });
             //LoadingPopup.Instance.HideLoading();
         }
