@@ -91,6 +91,15 @@ namespace StudentManagement.Helpers
                     UserName = "quanvm@gmail.com",
                     Password = "quan123"
                 },
+                new User
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    Avatar = "teacher_5.png",
+                    Role = RoleManager.AdminRole,
+                    UserName = "admin@gmail.com",
+                    Password = "admin123"
+                },
             };
         }
     }
