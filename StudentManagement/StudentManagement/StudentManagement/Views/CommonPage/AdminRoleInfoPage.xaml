@@ -51,7 +51,7 @@
                                 </StackLayout>
 
                                 <Grid Grid.Column="1"
-                                      RowSpacing="5"
+                                      RowSpacing="10"
                                       VerticalOptions="CenterAndExpand"
                                       Margin="10,0,0,0">
 
