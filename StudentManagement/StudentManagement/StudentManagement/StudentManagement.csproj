@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\Navigator\INavService.cs" />
     <Compile Include="Interfaces\ISQLiteHelper.cs" />
     <Compile Include="Interfaces\Navigator\IPageLifetime.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Score.cs" />
     <Compile Include="Models\Setting.cs" />
@@ -87,11 +88,13 @@
     <Compile Include="ViewModels\AddStudentsFlow\InputScorePageViewModel.cs" />
     <Compile Include="ViewModels\AddStudentsFlow\SearchPageViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\CommonPage\AdminRoleInfoPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeClassesInfoPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeRegulationsPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\ChangeSubjectsInfoPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\CommonPage\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageTabbed\AdminRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\PrincipalRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\StudentRoleMainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageTabbed\TeacherRoleMainPageViewModel.cs" />
@@ -119,6 +122,9 @@
     <Compile Include="Views\AddStudentsFlow\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommonPage\AdminRoleInfoPage.xaml.cs">
+      <DependentUpon>AdminRoleInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CommonPage\ChangeClassesInfoPage.xaml.cs">
       <DependentUpon>ChangeClassesInfoPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
     <Compile Include="Views\CommonPage\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPageTabbed\AdminRoleMainPage.xaml.cs">
+      <DependentUpon>AdminRoleMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPageTabbed\PrincipalRoleMainPage.xaml.cs">
       <DependentUpon>PrincipalRoleMainPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +157,9 @@
     </Compile>
     <Compile Include="Views\Popups\AddSubjectPopup.xaml.cs">
       <DependentUpon>AddSubjectPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\AddUserPopup.xaml.cs">
+      <DependentUpon>AddUserPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Popups\ConfirmPasswordPopup.xaml.cs">
       <DependentUpon>ConfirmPasswordPopup.xaml</DependentUpon>
@@ -420,6 +432,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddStudentsFlow\SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CommonPage\AdminRoleInfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainPageTabbed\AdminRoleMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Popups\AddUserPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -77,7 +77,9 @@ namespace StudentManagement.ViewModels.CommonPage
             var navParam = new NavigationParameters();
 
             // If PrincipalRole
-            if (user.Role.Equals(RoleManager.PrincipalRole))
+            if (user.Role.Equals(RoleManager.AdminRole))
+                uri = "AdminRoleMainPage";
+            else if (user.Role.Equals(RoleManager.PrincipalRole))
                 uri = "PrincipalRoleMainPage";
             // If TeacherRole
             else if (user.Role.Equals(RoleManager.TeacherRole))

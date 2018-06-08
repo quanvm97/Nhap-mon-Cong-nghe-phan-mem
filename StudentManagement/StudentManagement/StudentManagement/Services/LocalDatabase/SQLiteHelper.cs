@@ -1,12 +1,12 @@
-﻿using System;
+﻿using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
+using StudentManagement.Interfaces;
+using StudentManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
-using SQLite.Net;
-using SQLiteNetExtensions.Extensions;
-using StudentManagement.Interfaces;
-using StudentManagement.Models;
 
 namespace StudentManagement.Services.LocalDatabase
 {
@@ -46,7 +46,8 @@ namespace StudentManagement.Services.LocalDatabase
                 typeof(Setting),
                 typeof(Student),
                 typeof(Subject),
-                typeof(User)
+                typeof(User),
+                typeof(Account)
             };
 
             foreach (var table in listTable)
@@ -186,7 +187,7 @@ namespace StudentManagement.Services.LocalDatabase
         {
             try
             {
-                var user = Database.Get<User>(s => s.Id > 0);
+                var user = Database.Get<User>(s => s.Id >= 0);
                 return user;
             }
             catch (Exception e)
@@ -349,7 +350,7 @@ namespace StudentManagement.Services.LocalDatabase
         }
 
         #endregion
-        
+
         #endregion
     }
 }
