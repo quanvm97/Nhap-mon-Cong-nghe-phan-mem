@@ -64,6 +64,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ClassDetailPage>();
             Container.RegisterTypeForNavigation<StudentDetailPage>();
             Container.RegisterTypeForNavigation<ScoreBoardPage>();
+            Container.RegisterTypeForNavigation<SearchStudentsPage>();
 
             //Add New Student
             Container.RegisterTypeForNavigation<AddNewStudentPage>();

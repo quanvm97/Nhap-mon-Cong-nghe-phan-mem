@@ -71,6 +71,29 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #endregion
 
+        #region Navigate Back
+
+        public override void OnNavigatedBackTo(NavigationParameters parameters)
+        {
+            if (parameters != null && parameters.ContainsKey(ParamKey.ExpectedResult.ToString()))
+            {
+                var expectedResult = parameters[ParamKey.ExpectedResult.ToString()] as Student;
+
+                if (!string.IsNullOrWhiteSpace(""))
+                {
+                    var serchResult = ListClass.Where(s =>
+                        StringHelper.RemoveUnicodeCharacter(s.Name.ToLower())
+                            .Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+                    Classes = new ObservableCollection<Class>(serchResult);
+                }
+                else
+                    Classes = ListClass;
+
+            }
+        }
+
+        #endregion
+
         #region Search Execute
 
         private void SearchExecute(string text)
@@ -123,9 +146,11 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         {
             ClickedSearchBackgroundColor = Color.White;
 
-            await Task.Delay(200);
+            //await Task.Delay(200);
 
             ClickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+            await NavigationService.NavigateAsync("SearchStudentsPage");
 
             //var serchResult = Classes.Where(s => StringHelper.RemoveUnicodeCharacter(s.Name.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
             //Classes = new ObservableCollection<Class>(serchResult);

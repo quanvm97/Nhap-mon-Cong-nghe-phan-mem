@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using System.Collections.Generic;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -101,9 +102,11 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         public ICommand SearchIconCommand { get; set; }
         public ICommand FilterIconCommand { get; set; }
 
-        private void SearchToolbarItemsExecute()
+        private async void SearchToolbarItemsExecute()
         {
-            ShowSearchBox = !ShowSearchBox;
+            //ShowSearchBox = !ShowSearchBox;
+
+            await NavigationService.NavigateAsync("SearchStudentsPage");
         }
 
         private async void SearchIconExecute()
@@ -111,9 +114,11 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
             ClickedSearchBackgroundColor = Color.White;
 
-            await Task.Delay(200);
+            //await Task.Delay(200);
 
             ClickedSearchBackgroundColor = Color.FromHex("#F1EFEF");
+
+            await NavigationService.NavigateAsync("SearchStudentsPage");
 
             //var serchResult = Students.Where(s =>
             //    StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
@@ -187,7 +192,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #region override
 
-        public override void OnNavigatedNewTo(NavigationParameters parameters)
+        public override async void OnNavigatedNewTo(NavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
 
@@ -199,11 +204,23 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                     SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
                     return;
                 }
+
+                if (parameters.ContainsKey(ParamKey.SearchResult.ToString()) &&
+                    parameters.ContainsKey(ParamKey.ExpectedResult.ToString()))
+                {
+                    var result = parameters[ParamKey.ExpectedResult.ToString()] as Student;
+
+                    await ShowResult(result);
+                }
             }
+
+
 
             SetListStudentData();
             Title = "Học sinh";
         }
+
+        
 
         private void SetClassInfo(Class classInfo)
         {
@@ -231,6 +248,37 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
             });
             //LoadingPopup.Instance.HideLoading();
+        }
+
+        #endregion
+        
+        #region Show Search Result
+
+       
+
+        private Task ShowResult(Student result)
+        {
+            ObservableCollection<Student> ListResult  = new ObservableCollection<Student>();
+
+            if (!string.IsNullOrEmpty(result.FullName))
+            {
+               var searchResult = ListStudents.Where(s => StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+                    .Contains(StringHelper.RemoveUnicodeCharacter(result.FullName.ToLower())));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if ((result.Gender.Equals(1) || result.Gender.Equals(0)) && ListResult.Count != 0)
+            {
+                var searchResult = ListResult.Where(s => s.Gender.Equals(result.Gender));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+
+            Students = ListResult;
+
+            return Task.FromResult(0);
         }
 
         #endregion

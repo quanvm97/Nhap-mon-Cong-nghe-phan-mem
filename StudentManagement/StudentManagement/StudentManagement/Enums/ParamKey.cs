@@ -14,6 +14,8 @@
         NeedReload,
         IsStudent,
 
-        ShowOneClassOnly
+        ShowOneClassOnly,
+        ExpectedResult,
+        SearchResult,
     }
 }
