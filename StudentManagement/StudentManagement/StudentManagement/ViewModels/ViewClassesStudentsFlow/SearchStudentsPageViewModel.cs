@@ -27,6 +27,14 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
             // Commands
             SearchCommand = new DelegateCommand(SearchExcute);
+
+            ListClasses = new List<string>();
+            ListClasses.Add("Tất cả");
+            var classes = Database.GetList<Class>(i => i.Id >= 0);
+            foreach (var item in classes)
+            {
+                ListClasses.Add(item.Name);
+            }
         }
 
         
@@ -38,6 +46,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         private string _gender;
         private string _email;
         private string _address;
+        private string _className;
+        private List<string> _listClasses;
         private AddNewStudentType _type;
 
         private string _buttonName;
@@ -70,6 +80,18 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             get => _address;
             set => SetProperty(ref _address, value);
         }
+
+        public string ClassName
+        {
+            get => _className;
+            set => SetProperty(ref _className, value);
+        }
+
+        public List<string> ListClasses
+        {
+            get => _listClasses;
+            set => SetProperty(ref _listClasses, value);
+        }
         public string ButtonName
         {
             get => _buttonName;
@@ -95,7 +117,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             }
             _student = new Student();
             _student.FullName = FullName;
-            _student.Address = Address;
+            _student.ClassName = ClassName!="Tất cả"?ClassName:null;
             _student.DoB = DoB;
             //_student.Gender = Gender;
             switch (Gender)
@@ -108,6 +130,11 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 case "Nữ":
                 {
                     _student.Gender = 0;
+                        break;
+                }
+                default:
+                {
+                    _student.Gender = 2;
                         break;
                 }
             }

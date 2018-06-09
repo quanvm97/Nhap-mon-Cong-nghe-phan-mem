@@ -153,6 +153,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #region property
 
+        private bool ShowSearchResultOnly = false;
+
         private User user;
 
         private ObservableCollection<Student> _students;
@@ -208,9 +210,13 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 if (parameters.ContainsKey(ParamKey.SearchResult.ToString()) &&
                     parameters.ContainsKey(ParamKey.ExpectedResult.ToString()))
                 {
+                    ShowSearchResultOnly = true;
+
                     var result = parameters[ParamKey.ExpectedResult.ToString()] as Student;
 
                     await ShowResult(result);
+
+                    return;
                 }
             }
 
@@ -243,7 +249,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                     student.GetAvgScore(Database);
                 }
 
-                if (!ShowOneClassOnly)
+                if (!ShowOneClassOnly && !ShowSearchResultOnly)
                     ListStudents = Students = new ObservableCollection<Student>(students);
 
             });
@@ -256,13 +262,13 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
        
 
-        private Task ShowResult(Student result)
+        private async Task ShowResult(Student result)
         {
-            ObservableCollection<Student> ListResult  = new ObservableCollection<Student>();
+            ObservableCollection<Student> ListResult = new ObservableCollection<Student>(Database.GetList<Student>(i => i.Id >= 0));
 
             if (!string.IsNullOrEmpty(result.FullName))
             {
-               var searchResult = ListStudents.Where(s => StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+               var searchResult = ListResult.Where(s => StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
                     .Contains(StringHelper.RemoveUnicodeCharacter(result.FullName.ToLower())));
 
                 ListResult = new ObservableCollection<Student>(searchResult);
@@ -275,10 +281,28 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 ListResult = new ObservableCollection<Student>(searchResult);
             }
 
+            if (!string.IsNullOrEmpty(result.DoB.ToString()) && !result.DoBstring.Equals("01-01-2001"))
+            {
+                var searchResult = ListResult.Where(s => s.DoBstring.Equals(result.DoBstring));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (!string.IsNullOrEmpty(result.ClassName))
+            {
+                var searchResult = ListResult.Where(s => s.ClassName.Equals(result.ClassName));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (ListResult.Count == 0)
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Không tìm thấy học sinh nào", "Đóng");
+            }
 
             Students = ListResult;
 
-            return Task.FromResult(0);
+           
         }
 
         #endregion
