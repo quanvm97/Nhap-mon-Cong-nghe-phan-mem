@@ -17,5 +17,6 @@
         ShowOneClassOnly,
         ExpectedResult,
         SearchResult,
+        AvgScore,
     }
 }

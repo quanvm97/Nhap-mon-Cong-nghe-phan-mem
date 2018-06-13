@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -213,8 +214,17 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                     ShowSearchResultOnly = true;
 
                     var result = parameters[ParamKey.ExpectedResult.ToString()] as Student;
+                    
+                    float avgscore = new float();
+                    if (parameters.ContainsKey(ParamKey.AvgScore.ToString()))
+                    {
+                        avgscore = (float)parameters[ParamKey.AvgScore.ToString()];
+                    }
+                    
 
-                    await ShowResult(result);
+                    var semeter = parameters[ParamKey.Semester.ToString()].ToString();
+
+                    await ShowResult(result,avgscore, semeter);
 
                     return;
                 }
@@ -262,7 +272,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
        
 
-        private async Task ShowResult(Student result)
+        private async Task ShowResult(Student result, float avgscore, string semeter)
         {
             ObservableCollection<Student> ListResult = new ObservableCollection<Student>(Database.GetList<Student>(i => i.Id >= 0));
 
@@ -291,6 +301,36 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             if (!string.IsNullOrEmpty(result.ClassName))
             {
                 var searchResult = ListResult.Where(s => s.ClassName.Equals(result.ClassName));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if ( avgscore <= 10 && avgscore > 0)
+            {
+                foreach (var student in ListResult)
+                {
+                    student.GetAvgScore(Database);
+                }
+
+                List<Student> searchResult = new List<Student>();
+                if (string.Equals(semeter,"Học kỳ 1"))
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg1.Equals((float)Math.Round(avgscore,1))).ToList();
+                }
+                else if (string.Equals(semeter, "Học kỳ 2"))
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg2.Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+                else if(string.Equals(semeter, "Cả năm"))
+                {
+                    searchResult = ListResult.Where(s =>((float) Math.Round((s.ScoreAvg1 + s.ScoreAvg2)/2, 1)).Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+                else
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg1.Equals((float)Math.Round(avgscore, 1)) ||
+                                                         s.ScoreAvg2.Equals((float)Math.Round(avgscore, 1)) ||
+                                                         ((float)Math.Round((s.ScoreAvg1 + s.ScoreAvg2) / 2, 1)).Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
 
                 ListResult = new ObservableCollection<Student>(searchResult);
             }

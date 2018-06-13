@@ -21,6 +21,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -29,6 +31,7 @@
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
                    HorizontalTextAlignment="Center"
+                   IsVisible="False"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -55,7 +58,7 @@
                 Border="Normal"
                 Placeholder="Tất cả"
                 HasPlaceholder="True"
-                Format="dd-mm-yyyy"
+                Format="dd-MM-yyyy"
                 FontSize="{StaticResource MediumFontSize}"
                 Grid.Row="2"
                 Grid.Column="1"
@@ -67,6 +70,7 @@
                    Grid.Row="3"
                    Grid.Column="0"/>
                 <controls:CustomPicker
+                x:Name="PickerGioiTinh"
                 Border="Normal"
                 FontSize="{StaticResource MediumFontSize}"
                 SelectedIndex="0"
@@ -104,9 +108,35 @@
                 Grid.Row="5"
                 Grid.Column="1"/>
 
+                <!--Năm học-->
+                <Label Text="Học kỳ"
+                       TextColor="Purple"
+                       Grid.Row="6"
+                       Grid.Column="0"/>
+                <controls:CustomPicker
+                    x:Name="PickerHocKi"
+                    SelectedItem="{Binding Semeter}"
+                    FontSize="{StaticResource MediumFontSize}"
+                    Grid.Row="6"
+                    Grid.Column="1"/>
+
+                
+                <!--Điểm trung bình-->
+                <Label Text="Điểm trung bình"
+                       TextColor="Purple"
+                       Grid.Row="7"
+                       Grid.Column="0"/>
+                <Entry 
+                    Text="{Binding AvgScore}"
+                    Placeholder="Tất cả"
+                    Keyboard="Numeric"
+                    FontSize="{StaticResource MediumFontSize}"
+                    Grid.Row="7"
+                    Grid.Column="1"/>
+
                 <!--Continue Button-->
                 <Button Text="Tìm kiếm"
-                    Grid.Row="6"
+                    Grid.Row="8"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     VerticalOptions="End"

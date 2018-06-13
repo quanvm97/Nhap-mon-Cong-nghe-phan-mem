@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -50,6 +51,9 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
         private List<string> _listClasses;
         private AddNewStudentType _type;
 
+        private string _semeter;
+        private string _avgScore;
+
         private string _buttonName;
         private Student _student;
         #endregion
@@ -92,6 +96,19 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             get => _listClasses;
             set => SetProperty(ref _listClasses, value);
         }
+
+        public string Semeter
+        {
+            get => _semeter;
+            set => SetProperty(ref _semeter, value);
+        }
+
+        public string AvgScore
+        {
+            get => _avgScore;
+            set => SetProperty(ref _avgScore, value);
+        }
+
         public string ButtonName
         {
             get => _buttonName;
@@ -138,12 +155,27 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                         break;
                 }
             }
+
+            switch (Semeter)
+            {
+                case "Học kỳ 1":
+                {
+                    //_student.ScoreAvg1 = float.Parse(AvgScore);
+                    break;
+                }
+            }
             _student.Email = Email;
             var param = new NavigationParameters()
             {
                 {ParamKey.SearchResult.ToString(),true},
-                {ParamKey.ExpectedResult.ToString(), _student }
+                {ParamKey.ExpectedResult.ToString(), _student },
+                {ParamKey.Semester.ToString(), Semeter}
             };
+
+            if (!string.IsNullOrEmpty(AvgScore))
+            {
+                param.Add(ParamKey.AvgScore.ToString(), float.Parse(AvgScore));
+            }
 
             await NavigationService.NavigateAsync("StudentsPage",param);
         }
