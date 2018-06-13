@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Extensions;
+﻿using ImTools;
+using Rg.Plugins.Popup.Extensions;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.CommonPage;
@@ -45,7 +46,10 @@ namespace StudentManagement.Views.Popups
             }
             else
             {
-                var cls = _db.Get<Class>(c => c.Name.ToLower().Equals(EntryClassName.Text.Trim().ToLower()));
+                var listclasses = _db.GetList<Class>(a => a.Id >= 0);
+                var cls = listclasses.FindFirst(c =>
+                    c.Name.ToLower().Equals(EntryClassName.Text.Trim().ToLower()));
+
                 if (cls != null)
                 {
                     LabelWrong.IsVisible = true;

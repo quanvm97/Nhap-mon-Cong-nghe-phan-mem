@@ -20,6 +20,7 @@ namespace StudentManagement.ViewModels.CommonPage
             // Commands
             SettingCommand = new DelegateCommand(SettingExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
+            RoleCommand = new DelegateCommand(RoleExecute);
 
             InitUser();
         }
@@ -40,10 +41,18 @@ namespace StudentManagement.ViewModels.CommonPage
             set => SetProperty(ref _isSettingVisible, value);
         }
 
+        private bool _isRoleVisible;
+        public bool IsRoleVisible
+        {
+            get => _isRoleVisible;
+            set => SetProperty(ref _isRoleVisible, value);
+        }
+
         #endregion
 
         #region Command
 
+        public ICommand RoleCommand { get; set; }
         public ICommand SettingCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
@@ -56,7 +65,18 @@ namespace StudentManagement.ViewModels.CommonPage
             CurrentUser = Database.GetUser();
 
             // Set View depend on user's role
-            IsSettingVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsSettingVisible = (CurrentUser.Role.Equals(RoleManager.PrincipalRole) ||
+                                CurrentUser.Role.Equals(RoleManager.AdminRole));
+            IsRoleVisible = CurrentUser.Role.Equals(RoleManager.AdminRole);
+        }
+
+        #endregion
+
+        #region RoleExecute
+
+        private void RoleExecute()
+        {
+            NavigationService.NavigateAsync("AdminRoleInfoPage");
         }
 
         #endregion

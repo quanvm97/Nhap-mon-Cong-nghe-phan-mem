@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SQLite.Net.Attributes;
+﻿using SQLite.Net.Attributes;
 using StudentManagement.Interfaces;
+using System.Linq;
 
 namespace StudentManagement.Models
 {
@@ -11,6 +10,8 @@ namespace StudentManagement.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string SchoolYear { get; set; }
 
         [Ignore]
         public int Students { get; private set; }

@@ -51,11 +51,13 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ChangeRegulationsPage>();
             Container.RegisterTypeForNavigation<ChangeClassesInfoPage>();
             Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>();
+            Container.RegisterTypeForNavigation<AdminRoleInfoPage>();
 
             //MainPagetabbed
             Container.RegisterTypeForNavigation<PrincipalRoleMainPage>();
             Container.RegisterTypeForNavigation<TeacherRoleMainPage>();
             Container.RegisterTypeForNavigation<StudentRoleMainPage>();
+            Container.RegisterTypeForNavigation<AdminRoleMainPage>();
 
             //Home Flow
             Container.RegisterTypeForNavigation<HomePage>();
@@ -117,6 +119,8 @@ namespace StudentManagement
             if (user == null)
                 uri = "LoginPage";
             // If PrincipalRole
+            else if (user.Role.Equals(RoleManager.AdminRole))
+                uri = "AdminRoleMainPage";
             else if (user.Role.Equals(RoleManager.PrincipalRole))
                 uri = "PrincipalRoleMainPage";
             // If TeacherRole
