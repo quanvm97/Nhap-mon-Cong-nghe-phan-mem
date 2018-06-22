@@ -6,6 +6,8 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -148,6 +150,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #region property
 
+        private bool ShowSearchResultOnly = false;
+
         private User user;
 
         private ObservableCollection<Student> _students;
@@ -187,7 +191,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         #region override
 
-        public override void OnNavigatedNewTo(NavigationParameters parameters)
+        public override async void OnNavigatedNewTo(NavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
 
@@ -197,6 +201,27 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                 {
                     ShowOneClassOnly = (bool)parameters[ParamKey.ShowOneClassOnly.ToString()];
                     SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
+                    return;
+                }
+
+                if (parameters.ContainsKey(ParamKey.SearchResult.ToString()) &&
+                    parameters.ContainsKey(ParamKey.ExpectedResult.ToString()))
+                {
+                    ShowSearchResultOnly = true;
+
+                    var result = parameters[ParamKey.ExpectedResult.ToString()] as Student;
+
+                    float avgscore = new float();
+                    if (parameters.ContainsKey(ParamKey.AvgScore.ToString()))
+                    {
+                        avgscore = (float)parameters[ParamKey.AvgScore.ToString()];
+                    }
+
+
+                    var semeter = parameters[ParamKey.Semester.ToString()].ToString();
+
+                    await ShowResult(result, avgscore, semeter);
+
                     return;
                 }
             }
@@ -226,11 +251,90 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
                     student.GetAvgScore(Database);
                 }
 
-                if (!ShowOneClassOnly)
+                if (!ShowOneClassOnly && !ShowSearchResultOnly)
                     ListStudents = Students = new ObservableCollection<Student>(students);
 
             });
             //LoadingPopup.Instance.HideLoading();
+        }
+
+        #endregion
+
+        #region Show Search Result
+
+
+
+        private async Task ShowResult(Student result, float avgscore, string semeter)
+        {
+            ObservableCollection<Student> ListResult = new ObservableCollection<Student>(Database.GetList<Student>(i => i.Id >= 0));
+
+            if (!string.IsNullOrEmpty(result.FullName))
+            {
+                var searchResult = ListResult.Where(s => StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower())
+                     .Contains(StringHelper.RemoveUnicodeCharacter(result.FullName.ToLower())));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if ((result.Gender.Equals(1) || result.Gender.Equals(0)) && ListResult.Count != 0)
+            {
+                var searchResult = ListResult.Where(s => s.Gender.Equals(result.Gender));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (!string.IsNullOrEmpty(result.DoB.ToString()) && !result.DoBstring.Equals("01-01-2001"))
+            {
+                var searchResult = ListResult.Where(s => s.DoBstring.Equals(result.DoBstring));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (!string.IsNullOrEmpty(result.ClassName))
+            {
+                var searchResult = ListResult.Where(s => s.ClassName.Equals(result.ClassName));
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (avgscore <= 10 && avgscore > 0)
+            {
+                foreach (var student in ListResult)
+                {
+                    student.GetAvgScore(Database);
+                }
+
+                List<Student> searchResult = new List<Student>();
+                if (string.Equals(semeter, "Học kỳ 1"))
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg1.Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+                else if (string.Equals(semeter, "Học kỳ 2"))
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg2.Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+                else if (string.Equals(semeter, "Cả năm"))
+                {
+                    searchResult = ListResult.Where(s => ((float)Math.Round((s.ScoreAvg1 + s.ScoreAvg2) / 2, 1)).Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+                else
+                {
+                    searchResult = ListResult.Where(s => s.ScoreAvg1.Equals((float)Math.Round(avgscore, 1)) ||
+                                                         s.ScoreAvg2.Equals((float)Math.Round(avgscore, 1)) ||
+                                                         ((float)Math.Round((s.ScoreAvg1 + s.ScoreAvg2) / 2, 1)).Equals((float)Math.Round(avgscore, 1))).ToList();
+                }
+
+                ListResult = new ObservableCollection<Student>(searchResult);
+            }
+
+            if (ListResult.Count == 0)
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Không tìm thấy học sinh nào", "Đóng");
+            }
+
+            Students = ListResult;
+
+
         }
 
         #endregion
