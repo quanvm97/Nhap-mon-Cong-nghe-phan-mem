@@ -26,7 +26,7 @@ namespace StudentManagement.Views.ViewClassesStudentsFlow
                 {
                     var vm = (StudentDetailPageViewModel)BindingContext;
                     var user = vm.Database.GetUser();
-                    if (user.Role.Equals(RoleManager.PrincipalRole))
+                    if (user.Role.Equals(RoleManager.PrincipalRole) || user.Role.Equals(RoleManager.AdminRole))
                     {
                         this.ToolbarItems.Add(new ToolbarItem
                         {

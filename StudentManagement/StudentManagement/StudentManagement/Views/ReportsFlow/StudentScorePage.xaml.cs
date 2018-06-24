@@ -24,7 +24,7 @@ namespace StudentManagement.Views.ReportsFlow
                 {
                     var vm = (StudentScorePageViewModel)BindingContext;
                     var user = vm.Database.GetUser();
-                    if (user.Role.Equals(RoleManager.PrincipalRole))
+                    if (user.Role.Equals(RoleManager.PrincipalRole) || user.Role.Equals(RoleManager.AdminRole))
                     {
                         this.ToolbarItems.Add(new ToolbarItem
                         {

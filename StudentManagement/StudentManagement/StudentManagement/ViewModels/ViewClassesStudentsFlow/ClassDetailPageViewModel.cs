@@ -168,7 +168,12 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
             Dialog.DisplayAlertAsync("Thông báo", "Tiếp nhận học sinh thành công", "OK");
 
             // Show info student after adding
-            string uri = "PrincipalRoleMainPage";
+            var user = Database.GetUser();
+            string uri = string.Empty;
+            if (user.Role.Equals(RoleManager.AdminRole))
+                uri = "AdminRoleMainPage";
+            else
+                uri = "PrincipalRoleMainPage";
 
             var navParam = new NavigationParameters
             {

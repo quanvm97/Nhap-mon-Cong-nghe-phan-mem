@@ -6,6 +6,7 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -266,6 +267,8 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
         private async Task ShowResult(Student result, float avgscore, string semeter)
         {
+            LoadingPopup.Instance.ShowLoading();
+
             ObservableCollection<Student> ListResult = new ObservableCollection<Student>(Database.GetList<Student>(i => i.Id >= 0));
 
             if (!string.IsNullOrEmpty(result.FullName))
@@ -334,7 +337,7 @@ namespace StudentManagement.ViewModels.ViewClassesStudentsFlow
 
             Students = ListResult;
 
-
+            LoadingPopup.Instance.HideLoading();
         }
 
         #endregion

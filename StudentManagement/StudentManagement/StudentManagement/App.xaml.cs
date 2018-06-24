@@ -13,6 +13,7 @@ using StudentManagement.Views.MainPageTabbed;
 using StudentManagement.Views.ReportsFlow;
 using StudentManagement.Views.ViewClassesStudentsFlow;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace StudentManagement
@@ -37,7 +38,7 @@ namespace StudentManagement
             InitMockData();
             InitializeComponent();
 
-            StartApp();
+            await StartApp();
         }
 
         protected override void RegisterTypes()
@@ -108,7 +109,7 @@ namespace StudentManagement
             }
         }
 
-        private async void StartApp()
+        private async Task StartApp()
         {
             var user = _sqLiteHelper.GetUser();
 
